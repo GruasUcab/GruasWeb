@@ -1,0 +1,6 @@
+@GruasUcabb_HostAddress = http://localhost:5292
+
+GET {{GruasUcabb_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

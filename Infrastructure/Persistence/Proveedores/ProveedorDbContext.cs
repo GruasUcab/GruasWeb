@@ -12,6 +12,9 @@ namespace GrúasUCAB.Infrastructure.Persistence.Proveedores
         // DbSets para las entidades
         public required DbSet<Proveedor> Proveedores { get; set; }
         public required DbSet<Vehiculo> Vehiculos { get; set; }
+        public required DbSet<Conductor> Conductores { get; set; }
+        
+
 
         // Configuración de las entidades y sus mapeos
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -64,12 +67,38 @@ namespace GrúasUCAB.Infrastructure.Persistence.Proveedores
                 entity.Property(v => v.Activo)
                       .IsRequired();
 
-                // Relación con Proveedor
-                //entity.HasOne(v => v.Proveedor)
-                  //    .WithMany(p => p.Vehiculos)
-                    //  .HasForeignKey(v => v.ProveedorId)
-                      //.OnDelete(DeleteBehavior.Cascade);
+                 //Relación con Proveedor
+                  entity.HasOne(v => v.Proveedor)
+                     .WithMany(p => p.Vehiculos)
+                     .HasForeignKey(v => v.ProveedorId)
+                     .OnDelete(DeleteBehavior.Cascade);
             });
+             modelBuilder.Entity<Conductor>(entity =>
+            {
+                  entity.ToTable("Conductor");
+                  entity.HasKey(c => c.Id);
+
+                  entity.Property(c => c.Nombre)
+                        .IsRequired()
+                        .HasMaxLength(20);
+
+                  entity.Property(c => c.Telefono)
+                        .IsRequired()
+                        .HasMaxLength(15);
+
+                  entity.Property(c => c.Licencia)
+                        .IsRequired()
+                        .HasMaxLength(20);
+
+                  entity.Property(c => c.Activo)
+                        .IsRequired();
+
+                  entity.HasMany(c => c.Ordenes)
+                        .WithOne(o => o.Conductor)
+                        .HasForeignKey(o => o.ConductorId)
+                        .OnDelete(DeleteBehavior.Restrict);
+            });
+            
         }
     }
 }

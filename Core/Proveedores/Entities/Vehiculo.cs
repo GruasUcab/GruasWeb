@@ -10,7 +10,7 @@ namespace GrúasUCAB.Core.Proveedores.Entities
 
         // Relación con Proveedor
         public Guid ProveedorId { get; private set; }
-        public Proveedor Proveedor { get; private set; }
+        public Proveedor? Proveedor { get; private set; }
 
         public Vehiculo(Guid id, string placa, string modelo, int capacidad, bool activo, Guid proveedorId)
         {

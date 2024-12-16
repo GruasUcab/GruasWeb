@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\ProyectoUcab\\GruasUcabb\\GrúasUCAB.csproj": {}
+    "c:\\ProyectoUcab\\GruasUcabb\\GrúasUCAB.csproj": {}
   },
   "projects": {
-    "C:\\ProyectoUcab\\GruasUcabb\\GrúasUCAB.csproj": {
+    "c:\\ProyectoUcab\\GruasUcabb\\GrúasUCAB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ProyectoUcab\\GruasUcabb\\GrúasUCAB.csproj",
+        "projectUniqueName": "c:\\ProyectoUcab\\GruasUcabb\\GrúasUCAB.csproj",
         "projectName": "GrúasUCAB",
-        "projectPath": "C:\\ProyectoUcab\\GruasUcabb\\GrúasUCAB.csproj",
+        "projectPath": "c:\\ProyectoUcab\\GruasUcabb\\GrúasUCAB.csproj",
         "packagesPath": "C:\\Users\\Nelson Delgado\\.nuget\\packages\\",
-        "outputPath": "C:\\ProyectoUcab\\GruasUcabb\\obj\\",
+        "outputPath": "c:\\ProyectoUcab\\GruasUcabb\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Nelson Delgado\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -50,6 +50,10 @@
             "FluentValidation.AspNetCore": {
               "target": "Package",
               "version": "[11.3.0, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[12.4.1, )"
             },
             "MediatR.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",

@@ -1,6 +1,8 @@
 using GrúasUCAB.Core.Usuarios.Entities;
 using GrúasUCAB.Core.Usuarios.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 
 namespace GrúasUCAB.API.Controllers
 {
@@ -18,8 +20,15 @@ namespace GrúasUCAB.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var usuario = await _repository.GetByIdAsync(id);
-            return usuario != null ? Ok(usuario) : NotFound();
+            try
+            {
+                var usuario = await _repository.GetByIdAsync(id);
+                return Ok(usuario);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { Message = ex.Message });
+            }
         }
 
         [HttpGet]
@@ -50,9 +59,16 @@ namespace GrúasUCAB.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            await _repository.DeleteAsync(id);
-            await _repository.SaveChangesAsync();
-            return NoContent();
+            try
+            {
+                await _repository.DeleteAsync(id);
+                await _repository.SaveChangesAsync();
+                return NoContent();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { Message = ex.Message });
+            }
         }
     }
 }

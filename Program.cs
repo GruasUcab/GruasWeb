@@ -3,7 +3,7 @@ using AutoMapper;
 using FluentValidation.AspNetCore;
 using Microsoft.OpenApi.Models;
 using GrúasUCAB.Infrastructure.Persistence.Usuarios;
-using GrúasUCAB.Infrastructure.Persistence;
+using GrúasUCAB.Infrastructure.Persistence.Proveedores;
 using GrúasUCAB.Core.Usuarios.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,9 +12,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Agregar servicios para los controladores
 builder.Services.AddControllers();
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<ProveedorDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("ProveedorConnection")));
+
+builder.Services.AddDbContext<UsuarioDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("UsuarioConnection")));;
     builder.Services.AddScoped<IDepartamentoRepository, DepartamentoRepository>();
+    
 
 
 // Configuración de FluentValidation (si planeas usarla más tarde)

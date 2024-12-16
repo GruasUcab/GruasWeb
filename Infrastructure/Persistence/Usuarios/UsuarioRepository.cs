@@ -9,9 +9,9 @@ namespace GrúasUCAB.Infrastructure.Persistence.Usuarios
 {
     public class UsuarioRepository : IUsuarioRepository
     {
-        private readonly AppDbContext _context;
+        private readonly UsuarioDbContext _context;
 
-        public UsuarioRepository(AppDbContext context)
+        public UsuarioRepository(UsuarioDbContext context)
         {
             _context = context;
         }

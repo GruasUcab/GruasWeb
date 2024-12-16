@@ -8,7 +8,7 @@ namespace GrúasUCAB.Core.Proveedores.Entities
         public string Direccion { get; private set; }
         public string Email { get; private set; }
         public bool Activo { get; private set; }
-
+        public ICollection<Vehiculo> Vehiculos { get; private set; } = new List<Vehiculo>();
         public Proveedor(Guid id, string nombre, string tipo, string direccion, string email, bool activo)
         {
             Id = id;

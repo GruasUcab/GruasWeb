@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GrúasUCAB")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c69545a4717fbacea5735bc50918d49dc94398a0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+67521c5ae3ebe01be272b74ab9b11e08c8ddba44")]
 [assembly: System.Reflection.AssemblyProductAttribute("GrúasUCAB")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GrúasUCAB")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

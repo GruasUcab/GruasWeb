@@ -21,7 +21,7 @@ namespace GrúasUCAB.Infrastructure.Persistence.Usuarios
             // Configuración para la entidad Usuario
             modelBuilder.Entity<Usuario>(entity =>
             {
-                entity.ToTable("Usuario"); // Nombre de la tabla
+                entity.ToTable("usuario"); // Nombre de la tabla
                 entity.HasKey(u => u.Id);  // Clave primaria
 
                 entity.Property(u => u.Nombre)
@@ -57,7 +57,7 @@ namespace GrúasUCAB.Infrastructure.Persistence.Usuarios
             // Configuración para la entidad Departamento
             modelBuilder.Entity<Departamento>(entity =>
             {
-                entity.ToTable("Departamento"); // Nombre de la tabla
+                entity.ToTable("departamento"); // Nombre de la tabla
                 entity.HasKey(d => d.Id);  // Clave primaria
 
                 entity.Property(d => d.Nombre)

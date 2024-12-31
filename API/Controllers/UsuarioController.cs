@@ -1,26 +1,35 @@
-using GrúasUCAB.Core.Usuarios.Entities;
-using GrúasUCAB.Core.Usuarios.Repositories;
+using GrúasUCAB.Core.Usuarios.DTOs;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Threading.Tasks;
+using GrúasUCAB.Core.Usuarios.Commands;
+using GrúasUCAB.Core.Usuarios.Repositories;
 
 namespace GrúasUCAB.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsuarioController : ControllerBase
+public class UsuarioController : ControllerBase
+{
+    private readonly IMediator _mediator;
+    private readonly IUsuarioRepository _repository;
+
+    public UsuarioController(IMediator mediator, IUsuarioRepository repository)
     {
-        private readonly IUsuarioRepository _repository;
+        _mediator = mediator;
+        _repository = repository;
+    }  
 
-        public UsuarioController(IUsuarioRepository repository)
-        {
-            _repository = repository;
-        }
+    [HttpPost]
+    public async Task<IActionResult> CreateUsuario(CreateUsuarioDTO usuarioDto)
+    {
+        var id = await _mediator.Send(new CreateUsuarioCommand(usuarioDto));
+        return CreatedAtAction(nameof(GetUsuario), new { id }, id);
+    }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(Guid id)
-        {
-            try
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetUsuario(Guid id)
+    {
+       try
             {
                 var usuario = await _repository.GetByIdAsync(id);
                 return Ok(usuario);
@@ -29,46 +38,21 @@ namespace GrúasUCAB.API.Controllers
             {
                 return NotFound(new { Message = ex.Message });
             }
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
-        {
-            var usuarios = await _repository.GetAllAsync();
-            return Ok(usuarios);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Create(Usuario usuario)
-        {
-            await _repository.AddAsync(usuario);
-            await _repository.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetById), new { id = usuario.Id }, usuario);
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid id, Usuario usuario)
-        {
-            if (id != usuario.Id) return BadRequest();
-
-            await _repository.UpdateAsync(usuario);
-            await _repository.SaveChangesAsync();
-            return NoContent();
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(Guid id)
-        {
-            try
-            {
-                await _repository.DeleteAsync(id);
-                await _repository.SaveChangesAsync();
-                return NoContent();
-            }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(new { Message = ex.Message });
-            }
-        }
     }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateUsuario(Guid id, UpdateUsuarioDTO usuarioDto)
+    {
+        await _mediator.Send(new UpdateUsuarioCommand(id, usuarioDto));
+        return NoContent();
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteUsuario(Guid id)
+    {
+        await _mediator.Send(new DeleteUsuarioCommand(id));
+        return NoContent();
+    }
+}
+
 }

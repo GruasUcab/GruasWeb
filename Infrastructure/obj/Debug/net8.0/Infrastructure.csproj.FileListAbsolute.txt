@@ -1,0 +1,14 @@
+C:\ProyectoUcab\GruasUcabb\Infrastructure\bin\Debug\net8.0\Infrastructure.deps.json
+C:\ProyectoUcab\GruasUcabb\Infrastructure\bin\Debug\net8.0\Infrastructure.dll
+C:\ProyectoUcab\GruasUcabb\Infrastructure\bin\Debug\net8.0\Infrastructure.pdb
+C:\ProyectoUcab\GruasUcabb\Infrastructure\bin\Debug\net8.0\Core.dll
+C:\ProyectoUcab\GruasUcabb\Infrastructure\bin\Debug\net8.0\Core.pdb
+C:\ProyectoUcab\GruasUcabb\Infrastructure\obj\Debug\net8.0\Infrastructure.csproj.AssemblyReference.cache
+C:\ProyectoUcab\GruasUcabb\Infrastructure\obj\Debug\net8.0\Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\ProyectoUcab\GruasUcabb\Infrastructure\obj\Debug\net8.0\Infrastructure.csproj.CoreCompileInputs.cache
+C:\ProyectoUcab\GruasUcabb\Infrastructure\obj\Debug\net8.0\Infrastructure.sourcelink.json
+C:\ProyectoUcab\GruasUcabb\Infrastructure\obj\Debug\net8.0\Infrastr.15EFFBFE.Up2Date
+C:\ProyectoUcab\GruasUcabb\Infrastructure\obj\Debug\net8.0\Infrastructure.dll
+C:\ProyectoUcab\GruasUcabb\Infrastructure\obj\Debug\net8.0\refint\Infrastructure.dll
+C:\ProyectoUcab\GruasUcabb\Infrastructure\obj\Debug\net8.0\Infrastructure.pdb
+C:\ProyectoUcab\GruasUcabb\Infrastructure\obj\Debug\net8.0\ref\Infrastructure.dll

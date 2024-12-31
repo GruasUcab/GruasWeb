@@ -1,15 +1,16 @@
 using MediatR;
+using GrúasUCAB.Core.Usuarios.DTOs;
 
 namespace GrúasUCAB.Core.Usuarios.Commands
 {
     public class CreateUsuarioCommand : IRequest<Guid>
+{
+    public CreateUsuarioDTO UsuarioDto { get; set; }
+
+    public CreateUsuarioCommand(CreateUsuarioDTO usuarioDto)
     {
-        public string Nombre { get; set; } = null!;
-        public string Apellido { get; set; } = null!;
-        public string Email { get; set; } = null!;
-        public string Clave { get; set; } = null!;
-        public bool Activo { get; set; }
-        public string TipoUsuario { get; set; } = null!;
-        public Guid DepartamentoId { get; set; }
+        UsuarioDto = usuarioDto;
     }
+}
+
 }

@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "+FO+5jlWtRg=",
+  "success": true,
+  "projectFilePath": "c:\\ProyectoUcab\\GruasUcabb\\Core\\Proveedores\\Core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Nelson Delgado\\.nuget\\packages\\fluentvalidation\\11.6.0\\fluentvalidation.11.6.0.nupkg.sha512",
+    "C:\\Users\\Nelson Delgado\\.nuget\\packages\\mediatr\\11.1.0\\mediatr.11.1.0.nupkg.sha512",
+    "C:\\Users\\Nelson Delgado\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

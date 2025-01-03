@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using GrúasUCAB.Core.Usuarios.Commands;
 using GrúasUCAB.Core.Usuarios.Repositories;
+using GrúasUCAB.Core.Usuarios.Queries;
 
 namespace GrúasUCAB.API.Controllers
 {
@@ -25,6 +26,13 @@ public class UsuarioController : ControllerBase
         var id = await _mediator.Send(new CreateUsuarioCommand(usuarioDto));
         return CreatedAtAction(nameof(GetUsuario), new { id }, id);
     }
+
+    [HttpGet]
+        public async Task<IActionResult> GetAllUsuarios()
+        {
+            var usuarios = await _mediator.Send(new GetAllUsuariosQuery());
+            return Ok(usuarios);
+        }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetUsuario(Guid id)

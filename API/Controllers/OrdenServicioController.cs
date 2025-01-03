@@ -1,72 +1,55 @@
 using GrúasUCAB.Core.Ordenes.Entities;
 using GrúasUCAB.Core.Ordenes.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using MediatR;
+using GrúasUCAB.Core.Ordenes.Queries;
+using GrúasUCAB.Core.Ordenes.DTOs;
+using GrúasUCAB.Core.Ordenes.Commands;
 
 namespace GrúasUCAB.API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
-    public class OrdenServicioController : ControllerBase
+[Route("api/[controller]")]
+public class OrdenDeServicioController : ControllerBase
+{
+    private readonly IMediator _mediator;
+
+    public OrdenDeServicioController(IMediator mediator)
     {
-        private readonly IOrdenServicioRepository _repository;
-
-        public OrdenServicioController(IOrdenServicioRepository repository)
-        {
-            _repository = repository;
-        }
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(Guid id)
-        {
-            try
-            {
-                var ordenServicio = await _repository.GetByIdAsync(id);
-                return Ok(ordenServicio);
-            }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(new { Message = ex.Message });
-            }
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
-        {
-            var ordenes = await _repository.GetAllAsync();
-            return Ok(ordenes);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Create(OrdenServicio ordenServicio)
-        {
-            await _repository.AddAsync(ordenServicio);
-            await _repository.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetById), new { id = ordenServicio.Id }, ordenServicio);
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid id, OrdenServicio ordenServicio)
-        {
-            if (id != ordenServicio.Id) return BadRequest();
-
-            await _repository.UpdateAsync(ordenServicio);
-            await _repository.SaveChangesAsync();
-            return NoContent();
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(Guid id)
-        {
-            try
-            {
-                await _repository.DeleteAsync(id);
-                await _repository.SaveChangesAsync();
-                return NoContent();
-            }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(new { Message = ex.Message });
-            }
-        }
+        _mediator = mediator;
     }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(Guid id)
+    {
+        var query = new GetOrdenDeServicioByIdQuery(id);
+        var result = await _mediator.Send(query);
+        return Ok(result);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] CreateOrdenDeServicioDTO ordenDeServicioDTO)
+    {
+        var command = new CreateOrdenDeServicioCommand(ordenDeServicioDTO);
+        var ordenId = await _mediator.Send(command);
+        return CreatedAtAction(nameof(GetById), new { id = ordenId }, null);
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update(Guid id, [FromBody] UpdateOrdenDeServicioDTO ordenDeServicioDTO)
+    {
+        var command = new UpdateOrdenDeServicioCommand(id, ordenDeServicioDTO);
+        await _mediator.Send(command);
+        return NoContent();
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        var command = new DeleteOrdenDeServicioCommand(id);
+        await _mediator.Send(command);
+        return NoContent();
+    }
+}
+
 }

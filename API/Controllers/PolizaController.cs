@@ -1,72 +1,52 @@
-using GrúasUCAB.Core.Ordenes.Entities;
-using GrúasUCAB.Core.Ordenes.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using MediatR;
+using GrúasUCAB.Core.Ordenes.DTOs;
+using GrúasUCAB.Core.Ordenes.Commands;
+using GrúasUCAB.Core.Ordenes.Repositories;
 
-namespace GrúasUCAB.API.Controllers
+[ApiController]
+[Route("polizas")]
+public class PolizaController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class PolizaController : ControllerBase
+    private readonly IMediator _mediator;
+
+    public PolizaController(IMediator mediator)
     {
-        private readonly IPolizaRepository _repository;
-
-        public PolizaController(IPolizaRepository repository)
-        {
-            _repository = repository;
-        }
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(Guid id)
-        {
-            try
-            {
-                var poliza = await _repository.GetByIdAsync(id);
-                return Ok(poliza);
-            }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(new { Message = ex.Message });
-            }
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
-        {
-            var polizas = await _repository.GetAllAsync();
-            return Ok(polizas);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Create(Poliza poliza)
-        {
-            await _repository.AddAsync(poliza);
-            await _repository.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetById), new { id = poliza.Id }, poliza);
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid id, Poliza poliza)
-        {
-            if (id != poliza.Id) return BadRequest();
-
-            await _repository.UpdateAsync(poliza);
-            await _repository.SaveChangesAsync();
-            return NoContent();
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(Guid id)
-        {
-            try
-            {
-                await _repository.DeleteAsync(id);
-                await _repository.SaveChangesAsync();
-                return NoContent();
-            }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(new { Message = ex.Message });
-            }
-        }
+        _mediator = mediator;
     }
+
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] CreatePolizaDTO dto)
+    {
+        var id = await _mediator.Send(new CreatePolizaCommand(dto));
+        return Ok(new { Id = id });
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update(Guid id, [FromBody] UpdatePolizaDTO dto)
+    {
+        await _mediator.Send(new UpdatePolizaCommand(id, dto));
+        return NoContent();
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        await _mediator.Send(new DeletePolizaCommand(id));
+        return NoContent();
+    }
+
+    /*[HttpGet("{id}")]
+    public async Task<IActionResult> GetById(Guid id)
+    {
+        var result = await _mediator.Send(new GetPolizaByIdQuery(id));
+        return Ok(result);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
+    {
+        var result = await _mediator.Send(new GetAllPolizasQuery());
+        return Ok(result);
+    }*/
 }

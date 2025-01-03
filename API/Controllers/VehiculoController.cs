@@ -1,72 +1,52 @@
 using GrúasUCAB.Core.Proveedores.Entities;
 using GrúasUCAB.Core.Proveedores.Repositories;
 using Microsoft.AspNetCore.Mvc;
-
+using MediatR;
+using GrúasUCAB.Core.Proveedores.Commands;
+using GrúasUCAB.Core.Proveedores.Dto;
+using GrúasUCAB.Core.Proveedores.Queries;
+using GrúasUCAB.Core.Proveedores.DTO;
 namespace GrúasUCAB.API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class VehiculoController : ControllerBase
+[ApiController]
+[Route("api/[controller]")]
+public class VehiculoController : ControllerBase
+{
+    private readonly IMediator _mediator;
+
+    public VehiculoController(IMediator mediator)
     {
-        private readonly IVehiculoRepository _repository;
-
-        public VehiculoController(IVehiculoRepository repository)
-        {
-            _repository = repository;
-        }
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(Guid id)
-        {
-            try
-            {
-                var vehiculo = await _repository.GetByIdAsync(id);
-                return Ok(vehiculo);
-            }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(new { Message = ex.Message });
-            }
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
-        {
-            var vehiculos = await _repository.GetAllAsync();
-            return Ok(vehiculos);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Create(Vehiculo vehiculo)
-        {
-            await _repository.AddAsync(vehiculo);
-            await _repository.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetById), new { id = vehiculo.Id }, vehiculo);
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid id, Vehiculo vehiculo)
-        {
-            if (id != vehiculo.Id) return BadRequest();
-
-            await _repository.UpdateAsync(vehiculo);
-            await _repository.SaveChangesAsync();
-            return NoContent();
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(Guid id)
-        {
-            try
-            {
-                await _repository.DeleteAsync(id);
-                await _repository.SaveChangesAsync();
-                return NoContent();
-            }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(new { Message = ex.Message });
-            }
-        }
+        _mediator = mediator;
     }
+
+    [HttpPost]
+    public async Task<IActionResult> CreateVehiculo([FromBody] CreateVehiculoDTO vehiculoDto)
+    {
+        var id = await _mediator.Send(new CreateVehiculoCommand(vehiculoDto));
+        return CreatedAtAction(nameof(GetVehiculoById), new { id }, null);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetVehiculoById(Guid id)
+    {
+        var vehiculo = await _mediator.Send(new GetVehiculoByIdQuery(id));
+        return Ok(vehiculo);
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateVehiculo(Guid id, [FromBody] UpdateVehiculoDTO vehiculoDto)
+    {
+        await _mediator.Send(new UpdateVehiculoCommand(id, vehiculoDto));
+        return NoContent();
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteVehiculo(Guid id)
+    {
+        await _mediator.Send(new DeleteVehiculoCommand(id));
+        return NoContent();
+    }
+}
+
+
 }

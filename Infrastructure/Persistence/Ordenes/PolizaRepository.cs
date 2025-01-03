@@ -1,44 +1,47 @@
 using GrúasUCAB.Core.Ordenes.Entities;
 using GrúasUCAB.Core.Ordenes.Repositories;
+using GrúasUCAB.Infrastructure.Persistence.Ordenes;
 using Microsoft.EntityFrameworkCore;
 
-namespace GrúasUCAB.Infrastructure.Persistence.Ordenes
+public class PolizaRepository : IPolizaRepository
 {
-    public class PolizaRepository : IPolizaRepository
+    private readonly OrdenDbContext _context;
+
+    public PolizaRepository(OrdenDbContext context)
     {
-        private readonly OrdenDbContext _context;
+        _context = context;
+    }
 
-        public PolizaRepository(OrdenDbContext context)
+    public async Task<IEnumerable<Poliza>> GetAllAsync() =>
+        await _context.Polizas.ToListAsync();
+
+    public async Task<Poliza?> GetByIdAsync(Guid id) =>
+        await _context.Polizas.FirstOrDefaultAsync(p => p.Id == id);
+
+    public async Task AddAsync(Poliza poliza)
+    {
+        await _context.Polizas.AddAsync(poliza);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task UpdateAsync(Poliza poliza)
+    {
+        _context.Polizas.Update(poliza);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task DeleteAsync(Guid id)
+    {
+        var poliza = await GetByIdAsync(id);
+        if (poliza != null)
         {
-            _context = context;
-        }
-
-        public async Task<Poliza> GetByIdAsync(Guid id)
-        {
-            var poliza = await _context.Polizas.FindAsync(id);
-            if (poliza == null)
-            {
-                throw new KeyNotFoundException($"Poliza con ID {id} no encontrada.");
-            }
-            return poliza;
-        }
-
-        public async Task<IEnumerable<Poliza>> GetAllAsync() => await _context.Polizas.ToListAsync();
-
-        public async Task AddAsync(Poliza poliza) => await _context.Polizas.AddAsync(poliza);
-
-        public Task UpdateAsync(Poliza poliza)
-        {
-            _context.Polizas.Update(poliza);
-            return Task.CompletedTask;
-        }
-
-        public async Task DeleteAsync(Guid id)
-        {
-            var poliza = await GetByIdAsync(id);
             _context.Polizas.Remove(poliza);
+            await _context.SaveChangesAsync();
         }
+    }
 
-        public async Task SaveChangesAsync() => await _context.SaveChangesAsync();
+    public async Task SaveChangesAsync()
+    {
+        await _context.SaveChangesAsync(); // Persistir cambios
     }
 }

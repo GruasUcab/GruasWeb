@@ -8,7 +8,7 @@ namespace GrúasUCAB.Core.Ordenes.Entities
 
         // Relación con OrdenServicio
         public Guid OrdenId { get; private set; }
-        public OrdenServicio Orden { get; private set; } = null!;
+        public OrdenDeServicio Orden { get; private set; } = null!;
 
         public CostoAdicional(Guid id, string nombre, decimal monto, Guid ordenId)
         {

@@ -4,19 +4,20 @@ CREATE DATABASE Usuarios;
 \c Usuarios;
 
 -- Crea tablas o inserta datos iniciales
-CREATE TABLE Departamento (
-    id_departamento SERIAL PRIMARY KEY,
-    nombre VARCHAR(20) NOT NULL,
-    descripcion VARCHAR(100)
+create table "Departamento" (
+	"Id" UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+	"Nombre" varchar(20) not null,
+	"Descripcion" varchar(100)
 );
 
-CREATE TABLE Usuario (
-    id_usuario SERIAL PRIMARY KEY,
-    nombre VARCHAR(20) NOT NULL,
-    apellido VARCHAR(20) NOT NULL,
-    email VARCHAR(20) NOT NULL,
-    clave VARCHAR(16) NOT NULL,
-    activo BOOLEAN NOT NULL,
-    tipo_usuario VARCHAR(20) CHECK (tipo_usuario IN ('Operador', 'Conductor', 'Proveedor', 'Administrador')),
-    departamento INTEGER REFERENCES Departamento(id_departamento)
+
+create table Usuario (
+	"Id" UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+	"Nombre" varchar(20) NOT NULL,
+	"Apellido" varchar(20) NOT NULL,
+	"Email" varchar(20) NOT NULL,
+	"Clave" varchar(16) NOT NULL,
+	"Activo" boolean NOT NULL,
+	"TipoUsuario" varchar(20) check (tipo_usuario in ('Operador', 'Conductor', 'Proveedor', 'Administrador') ),
+	"DepartamentoId" UUID references "Departamento"("Id")
 );

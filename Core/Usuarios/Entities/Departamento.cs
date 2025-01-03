@@ -12,5 +12,7 @@ namespace GrúasUCAB.Core.Usuarios.Entities
             Nombre = nombre;
             Descripcion = descripcion;
         }
+        public void UpdateNombre(string nombre) => Nombre = nombre;
+        public void UpdateDescripcion(string descripcion) => Descripcion = descripcion;
     }
 }

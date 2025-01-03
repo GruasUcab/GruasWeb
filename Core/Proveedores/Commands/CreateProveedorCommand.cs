@@ -1,13 +1,16 @@
 using MediatR;
+using GrúasUCAB.Core.Proveedores.Dto;
 
 namespace GrúasUCAB.Core.Proveedores.Commands
 {
     public class CreateProveedorCommand : IRequest<Guid>
+{
+    public CreateProveedorDTO ProveedorDto { get; }
+
+    public CreateProveedorCommand(CreateProveedorDTO proveedorDto)
     {
-        public string Nombre { get; set; } = null!;
-        public string Tipo { get; set; } = null!;
-        public string Direccion { get; set; } = null!;
-        public string Email { get; set; } = null!;
-        public bool Activo { get; set; }
+        ProveedorDto = proveedorDto;
     }
+}
+
 }

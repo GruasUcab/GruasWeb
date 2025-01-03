@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using GrúasUCAB.Core.Proveedores.Entities;
-
+using GrúasUCAB.Core.Ordenes.Entities;
 namespace GrúasUCAB.Infrastructure.Persistence.Proveedores
 {
     public class ProveedorDbContext : DbContext
@@ -13,6 +13,8 @@ namespace GrúasUCAB.Infrastructure.Persistence.Proveedores
         public required DbSet<Proveedor> Proveedores { get; set; }
         public required DbSet<Vehiculo> Vehiculos { get; set; }
         public required DbSet<Conductor> Conductores { get; set; }
+        public required DbSet<OrdenDeServicio> OrdenesDeServicio { get; set; }
+
         
 
 
@@ -49,30 +51,25 @@ namespace GrúasUCAB.Infrastructure.Persistence.Proveedores
 
             // Configuración para la entidad Vehiculo
             modelBuilder.Entity<Vehiculo>(entity =>
-            {
-                entity.ToTable("Vehiculo");
-                entity.HasKey(v => v.Id);
+    {
+        entity.HasKey(v => v.Id);
 
-                entity.Property(v => v.Placa)
-                      .IsRequired()
-                      .HasMaxLength(10);
+        entity.Property(v => v.Marca).IsRequired().HasMaxLength(100);
+        entity.Property(v => v.Modelo).IsRequired().HasMaxLength(100);
+        entity.Property(v => v.Placa).IsRequired().HasMaxLength(50);
+        entity.Property(v => v.ProveedorId).IsRequired();
+        entity.Property(v => v.Capacidad).IsRequired();
+        entity.Property(v => v.Activo).IsRequired();
 
-                entity.Property(v => v.Modelo)
-                      .IsRequired()
-                      .HasMaxLength(15);
+        // Configuración de relaciones
+        entity.HasOne(v => v.Proveedor)
+              .WithMany(p => p.Vehiculos)
+              .HasForeignKey(v => v.ProveedorId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-                entity.Property(v => v.Capacidad)
-                      .IsRequired();
-
-                entity.Property(v => v.Activo)
-                      .IsRequired();
-
-                 //Relación con Proveedor
-                  entity.HasOne(v => v.Proveedor)
-                     .WithMany(p => p.Vehiculos)
-                     .HasForeignKey(v => v.ProveedorId)
-                     .OnDelete(DeleteBehavior.Cascade);
-            });
+        // Ignorar navegaciones en el constructor
+        entity.Ignore(v => v.Proveedor);
+    });
              modelBuilder.Entity<Conductor>(entity =>
             {
                   entity.ToTable("Conductor");
@@ -93,10 +90,10 @@ namespace GrúasUCAB.Infrastructure.Persistence.Proveedores
                   entity.Property(c => c.Activo)
                         .IsRequired();
 
-                  entity.HasMany(c => c.Ordenes)
+                  /*entity.HasMany(c => c.Ordenes)
                         .WithOne(o => o.Conductor)
                         .HasForeignKey(o => o.ConductorId)
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict);*/
             });
             
         }

@@ -1,5 +1,6 @@
 using GrúasUCAB.Core.Usuarios.Entities;
 using GrúasUCAB.Core.Usuarios.Repositories;
+using GrúasUCAB.Infrastructure.Persistence.Usuarios;
 using Microsoft.EntityFrameworkCore;
 
 namespace GrúasUCAB.Infrastructure.Persistence.Usuarios
@@ -13,32 +14,32 @@ namespace GrúasUCAB.Infrastructure.Persistence.Usuarios
             _context = context;
         }
 
-        public async Task<Departamento> GetByIdAsync(Guid id)
+        public async Task<IEnumerable<Departamento>> GetAllAsync()
         {
-            var departamento = await _context.Departamentos.FindAsync(id);
-            if (departamento == null)
-            {
-                throw new KeyNotFoundException($"Departamento con ID {id} no encontrado.");
-            }
-            return departamento;
+            return await _context.Departamentos.ToListAsync();
         }
 
-        public async Task<IEnumerable<Departamento>> GetAllAsync() => await _context.Departamentos.ToListAsync();
+        public async Task<Departamento?> GetByIdAsync(Guid id)
+        {
+            return await _context.Departamentos.FindAsync(id);
+        }
 
-        public async Task AddAsync(Departamento departamento) => await _context.Departamentos.AddAsync(departamento);
+        public async Task AddAsync(Departamento departamento)
+        {
+            await _context.Departamentos.AddAsync(departamento);
+            await _context.SaveChangesAsync();
+        }
 
-        public Task UpdateAsync(Departamento departamento)
+        public async Task UpdateAsync(Departamento departamento)
         {
             _context.Departamentos.Update(departamento);
-            return Task.CompletedTask;
+            await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(Departamento departamento)
         {
-            var departamento = await GetByIdAsync(id);
             _context.Departamentos.Remove(departamento);
+            await _context.SaveChangesAsync();
         }
-
-        public async Task SaveChangesAsync() => await _context.SaveChangesAsync();
     }
 }

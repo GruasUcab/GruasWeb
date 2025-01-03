@@ -1,30 +1,32 @@
-CREATE DATABASE Usuarios;
+CREATE DATABASE Proveedores;
 
 -- Conéctate a la base de datos Usuarios
-\c Usuarios;
+\c Proveedores;
 
-create table Proveedor(
-	id_proveedor numeric primary key,
-	nombre varchar(20) not null,
-	tipo varchar(20) check (tipo in ('Interno','Externo')),
-	direccion varchar(50) not null,
-	email varchar(30) not null,
-	activo boolean
+create table "Proveedor"(
+	"Id" UUID primary key,
+	"Nombre" varchar(20) not null,
+	"Tipo" varchar(20) check (tipo in ('Interno','Externo')),
+	"Direccion" varchar(50) not null,
+	"Email" varchar(30) not null,
+	"Activo" boolean
 );
 
-create table vehiculo(
-	id_vehiculo numeric primary key,
-	placa varchar(10) not null,
-	modelo varchar(15) not null,
-	capacidad numeric not null,
-	activo boolean,
-	id_proveedor numeric references proveedor(id_proveedor)
+create table "Vehiculo"(
+	"Id" UUID primary key,
+	"Placa" varchar(10) not null,
+	"Modelo" varchar(15) not null,
+	"Capacidad" numeric not null,
+	"Activo" boolean,
+	"IdProveedor" UUID references "Proveedor"("Id")
 );
 
-create table Conductor (
-	id_conductor numeric primary key,
-	nombre varchar(20) not null,
-	telefono numeric not null,
-	licencia numeric not null,
-	activo boolean	
+create table "Conductor" (
+	"Id" UUID primary key,
+	"Nombre" varchar(20) not null,
+	"Apellido" varchar(20) not null,
+	"Telefono" numeric not null,
+	"Licencia" varchar(20) not null,
+	"Activo" boolean,	
+	"ProveedorId" UUID references "Proveedor"("Id")
 );

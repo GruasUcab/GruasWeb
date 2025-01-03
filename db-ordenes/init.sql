@@ -1,39 +1,40 @@
-CREATE DATABASE Usuarios;
+CREATE DATABASE Ordenes;
 
 -- Conéctate a la base de datos Usuarios
-\c Usuarios;
+\c Ordenes;
 
-create table poliza(
-	id_poliza numeric primary key,
-	tipo_cobertura varchar(100) not null,
-	kilometros_incluidos numeric not null
+create table "Poliza"(
+	"Id" UUID primary key,
+	"TipoCobertura" varchar(100) not null,
+	"KilometrosIncluidos" numeric not null
 );
 
-create table Asegurado (
-	id_asegurado numeric primary key,
-	nombre varchar(20) not null,
-	telefono numeric not null,
-	email varchar(30) not null,
-	id_poliza numeric references poliza(id_poliza)
+create table "Asegurado" (
+	"Id" UUID primary key,
+	"Nombre" varchar(20) not null,
+	"Telefono" numeric not null,
+	"Email" varchar(30) not null,
+	"PolizaId" UUID references "Poliza"("Id")
 );
 
-create table Orden_servicio (
-	id_orden numeric primary key,
-	fecha_creacion date not null,
-	estado varchar(20) check (estado in ('Pendiente', 'Asignada','Completada','Cancelada')),
-	ubicacion_incidente varchar(40) not null,
-	ubicacion_destino varchar(40) not null,
-	kilometros_recorridos numeric not null,
-	costo_total numeric not null,
-	id_conductor numeric,
-	id_proveedor numeric,
-	id_vehiculo numeric	
+create table "OrdenDeServicios" (
+	"Id" UUID primary key,
+	"FechaCreacion" date not null,
+	"Estado" varchar(20) check ("Estado" in ('Pendiente', 'Asignada','Completada','Cancelada')),
+	"UbicacionIncidente" varchar(40) not null,
+	"UbicacionDestino" varchar(40) not null,
+	"KilometrosRecorridos" numeric not null,
+	"CostoTotal" numeric not null,
+	"ConductorId" UUID,
+	"ProveedorId" UUID,
+	"VehiculoId" UUID	
 );
 
-create table Costo_adicional(
-	id_costo numeric primary key,
-	nombre varchar(20) not null,
-	monto numeric not null,
-	id_orden numeric references Orden_servicio(id_orden)
+create table "CostoAdicional"(
+	"Id" numeric primary key,
+	"Nombre" varchar(20) not null,
+	"Monto" numeric not null,
+	"OrdenId" UUID references "OrdenDeServicios"("Id")
 );
+
 

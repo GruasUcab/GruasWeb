@@ -80,3 +80,4 @@ C:\ProyectoUcab\GruasUcabb\api\obj\Debug\net8.0\API.dll
 C:\ProyectoUcab\GruasUcabb\api\obj\Debug\net8.0\refint\API.dll
 C:\ProyectoUcab\GruasUcabb\api\obj\Debug\net8.0\API.pdb
 C:\ProyectoUcab\GruasUcabb\api\obj\Debug\net8.0\ref\API.dll
+C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\firebase-adminsdk.json

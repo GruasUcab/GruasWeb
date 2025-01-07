@@ -13,24 +13,40 @@ namespace GrúasUCAB.API.Controllers
 public class VehiculoController : ControllerBase
 {
     private readonly IMediator _mediator;
+    private readonly IVehiculoRepository _repository;
 
-    public VehiculoController(IMediator mediator)
+    public VehiculoController(IMediator mediator, IVehiculoRepository repository)
     {
         _mediator = mediator;
+        _repository = repository;
     }
 
     [HttpPost]
     public async Task<IActionResult> CreateVehiculo([FromBody] CreateVehiculoDTO vehiculoDto)
     {
         var id = await _mediator.Send(new CreateVehiculoCommand(vehiculoDto));
-        return CreatedAtAction(nameof(GetVehiculoById), new { id }, null);
+        return CreatedAtAction(nameof(GetVehiculoByID), new { id }, null);
     }
 
-    [HttpGet("{id}")]
+    /*[HttpGet("{id}")]
     public async Task<IActionResult> GetVehiculoById(Guid id)
     {
         var vehiculo = await _mediator.Send(new GetVehiculoByIdQuery(id));
         return Ok(vehiculo);
+    }*/
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetVehiculoByID(Guid id)
+    {
+       try
+            {
+                var vehiculo = await _repository.GetByIdAsync(id);
+                return Ok(vehiculo);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { Message = ex.Message });
+            }
     }
 
     [HttpPut("{id}")]

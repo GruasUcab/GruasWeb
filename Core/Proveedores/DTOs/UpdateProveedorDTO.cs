@@ -14,10 +14,10 @@ namespace GrúasUCAB.Core.Proveedores.Dto
 
 public class ProveedorDTO
 {
-    public Guid Id { get; set; }
-    public required string Nombre { get; set; }
-    public required string Direccion { get; set; }
-    public required string Telefono { get; set; }
+    public Guid Id { get; set; } // Identificador único del proveedor
+    public string Nombre { get; set; } = string.Empty; // Nombre del proveedor
+    public string Direccion { get; set; } = string.Empty; // Dirección del proveedor
+    public string Telefono { get; set; } = string.Empty; // Teléfono de contacto del proveedor
 }
 
 

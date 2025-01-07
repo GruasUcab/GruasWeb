@@ -4,11 +4,11 @@ namespace GrúasUCAB.Core.Ordenes.Repositories
 {
     public interface ICostoAdicionalRepository
     {
-        Task<CostoAdicional> GetByIdAsync(Guid id);
         Task<IEnumerable<CostoAdicional>> GetAllAsync();
+        Task<CostoAdicional?> GetByIdAsync(Guid id);
         Task AddAsync(CostoAdicional costoAdicional);
         Task UpdateAsync(CostoAdicional costoAdicional);
-        Task DeleteAsync(Guid id);
+        Task DeleteAsync(CostoAdicional costoAdicional);
         Task SaveChangesAsync();
     }
 }

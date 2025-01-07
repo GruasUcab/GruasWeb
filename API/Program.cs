@@ -12,6 +12,9 @@ using GrúasUCAB.Infrastructure.Persistence.Ordenes;
 using FirebaseAdmin.Messaging;
 using Google.Apis.Auth.OAuth2;
 using FirebaseAdmin;
+using GrúasUCAB.Core.Ordenes.Services.interfaces;
+using GrúasUCAB.Infrastructure.Persistence.Asegurados;
+
 
 
 
@@ -38,6 +41,13 @@ builder.Services.AddScoped<IConductorRepository, ConductorRepository>();
 builder.Services.AddScoped<IOrdenDeServicioRepository, OrdenDeServicioRepository>();
 builder.Services.AddScoped<IPolizaRepository, PolizaRepository>();
 builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddScoped<IProveedorService, ProveedorService>();
+builder.Services.AddScoped<IVehiculoService, VehiculoService>();
+builder.Services.AddScoped<IConductorService, ConductorService>();
+builder.Services.AddScoped<IAseguradoRepository, AseguradoRepository>();
+builder.Services.AddScoped<ICostoAdicionalRepository, CostoAdicionalRepository>();
+
+
 
 builder.Services.AddDbContext<ProveedorDbContext>(options =>
     options.UseNpgsql(

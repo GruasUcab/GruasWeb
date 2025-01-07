@@ -16,8 +16,7 @@ public class Vehiculo
     public Proveedor? Proveedor { get; private set; }
 
     // Constructor requerido por EF Core
-    private Vehiculo() { }
-
+    
     // Constructor utilizado en la aplicación
     public Vehiculo(Guid id, string marca, string modelo, string placa, Guid proveedorId, int capacidad, bool activo)
     {

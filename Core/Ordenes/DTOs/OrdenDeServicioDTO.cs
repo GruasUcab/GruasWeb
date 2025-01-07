@@ -37,6 +37,7 @@ public class OrdenDeServicioDTO
     public Guid? ConductorId { get; set; }
     public Guid? ProveedorId { get; set; }
     public Guid? VehiculoId { get; set; }
+    
 }
 
 

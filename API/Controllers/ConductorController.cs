@@ -13,10 +13,12 @@ namespace GrúasUCAB.API.Controllers
 public class ConductorController : ControllerBase
 {
     private readonly IMediator _mediator;
+    private readonly IConductorRepository _repository;
 
-    public ConductorController(IMediator mediator)
+    public ConductorController(IMediator mediator, IConductorRepository repository)
     {
         _mediator = mediator;
+        _repository = repository;
     }
 
     [HttpPost]
@@ -24,6 +26,20 @@ public class ConductorController : ControllerBase
     {
         var id = await _mediator.Send(new CreateConductorCommand(conductorDto));
         return Ok(id);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetConductor(Guid id)
+    {
+       try
+            {
+                var conductor = await _repository.GetByIdAsync(id);
+                return Ok(conductor);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { Message = ex.Message });
+            }
     }
 
     [HttpPut("{id}")]

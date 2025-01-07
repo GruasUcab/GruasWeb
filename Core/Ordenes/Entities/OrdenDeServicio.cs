@@ -9,21 +9,23 @@ namespace GrúasUCAB.Core.Ordenes.Entities
     {
         public Guid Id { get; private set; }
         public DateTime FechaCreacion { get; private set; }
-        public string Estado { get; private set; } // Pendiente, Asignada, Completada, Cancelada
-        public string UbicacionIncidente { get; private set; }
-        public string UbicacionDestino { get; private set; }
-        public decimal KilometrosRecorridos { get; private set; }
+        public string? Estado { get; private set; } // Pendiente, Asignada, Completada, Cancelada
+        public string? UbicacionIncidente { get; private set; }
+        public string? UbicacionDestino { get; private set; }
+        public decimal? KilometrosRecorridos { get; private set; }
         public decimal CostoTotal { get; private set; }
 
         // Relaciones
-        public Guid? ConductorId { get; private set; }
-        public Conductor? Conductor { get; private set; }
+        public Guid? ConductorId { get; private set; }       
 
-        public Guid? ProveedorId { get; private set; }
-        public Proveedor? Proveedor { get; private set; }
+        public Guid? ProveedorId { get; private set; }        
 
-        public Guid? VehiculoId { get; private set; }
-        public Vehiculo? Vehiculo { get; private set; }
+        public Guid? VehiculoId { get; private set; }       
+        
+        public OrdenDeServicio() {}
+
+        public ICollection<CostoAdicional> CostosAdicionales { get; private set; } = new List<CostoAdicional>();
+        
 
         public OrdenDeServicio(Guid id, DateTime fechaCreacion, string estado, string ubicacionIncidente, string ubicacionDestino, 
             decimal kilometrosRecorridos, decimal costoTotal, Guid? conductorId, Guid? proveedorId, Guid? vehiculoId)

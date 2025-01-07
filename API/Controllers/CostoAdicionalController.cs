@@ -1,117 +1,54 @@
-using GrúasUCAB.Core.Ordenes.Entities;
-using GrúasUCAB.Core.Ordenes.Repositories;
-using GrúasUCAB.API.DTOs;
 using Microsoft.AspNetCore.Mvc;
+using MediatR;
+using GrúasUCAB.Core.Ordenes.Commands;
+using GrúasUCAB.Core.Ordenes.Queries;
 
-namespace GrúasUCAB.API.Controllers
+[Route("api/[controller]")]
+[ApiController]
+public class CostoAdicionalController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class CostoAdicionalController : ControllerBase
+    private readonly IMediator _mediator;
+
+    public CostoAdicionalController(IMediator mediator)
     {
-        private readonly ICostoAdicionalRepository _repository;
+        _mediator = mediator;
+    }
 
-        public CostoAdicionalController(ICostoAdicionalRepository repository)
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] CreateCostoAdicionalCommand command)
+    {
+        var id = await _mediator.Send(command);
+        return CreatedAtAction(nameof(GetById), new { id }, id);
+    }
+
+    [HttpGet("{id:guid}")]
+    public async Task<IActionResult> GetById(Guid id)
+    {
+        var costoAdicional = await _mediator.Send(new GetCostoAdicionalByIdQuery(id));
+        if (costoAdicional == null)
         {
-            _repository = repository;
+            return NotFound();
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(Guid id)
+        return Ok(costoAdicional);
+    }
+
+    [HttpPut("{id:guid}")]
+    public async Task<IActionResult> Update(Guid id, [FromBody] UpdateCostoAdicionalCommand command)
+    {
+        if (id != command.Id)
         {
-            try
-            {
-                var costoAdicional = await _repository.GetByIdAsync(id);
-                var response = new CostoAdicionalResponseDto
-                {
-                    Id = costoAdicional.Id,
-                    Nombre = costoAdicional.Nombre,
-                    Monto = costoAdicional.Monto,
-                    OrdenId = costoAdicional.OrdenId
-                };
-                return Ok(response);
-            }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(new { Message = ex.Message });
-            }
+            return BadRequest("El ID del costo adicional no coincide.");
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
-        {
-            var costosAdicionales = await _repository.GetAllAsync();
-            var response = costosAdicionales.Select(c => new CostoAdicionalResponseDto
-            {
-                Id = c.Id,
-                Nombre = c.Nombre,
-                Monto = c.Monto,
-                OrdenId = c.OrdenId
-            });
-            return Ok(response);
-        }
+        await _mediator.Send(command);
+        return NoContent();
+    }
 
-        [HttpPost]
-        public async Task<IActionResult> Create(CostoAdicionalRequestDto dto)
-        {
-            var costoAdicional = new CostoAdicional(
-                Guid.NewGuid(),
-                dto.Nombre,
-                dto.Monto,
-                dto.OrdenId
-            );
-
-            await _repository.AddAsync(costoAdicional);
-            await _repository.SaveChangesAsync();
-
-            var response = new CostoAdicionalResponseDto
-            {
-                Id = costoAdicional.Id,
-                Nombre = costoAdicional.Nombre,
-                Monto = costoAdicional.Monto,
-                OrdenId = costoAdicional.OrdenId
-            };
-
-            return CreatedAtAction(nameof(GetById), new { id = response.Id }, response);
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid id, CostoAdicionalRequestDto dto)
-        {
-            try
-            {
-                var costoAdicional = await _repository.GetByIdAsync(id);
-
-                costoAdicional = new CostoAdicional(
-                    id,
-                    dto.Nombre,
-                    dto.Monto,
-                    dto.OrdenId
-                );
-
-                await _repository.UpdateAsync(costoAdicional);
-                await _repository.SaveChangesAsync();
-                return NoContent();
-            }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(new { Message = ex.Message });
-            }
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(Guid id)
-        {
-            try
-            {
-                await _repository.DeleteAsync(id);
-                await _repository.SaveChangesAsync();
-                return NoContent();
-            }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(new { Message = ex.Message });
-            }
-        }
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        await _mediator.Send(new DeleteCostoAdicionalCommand(id));
+        return NoContent();
     }
 }

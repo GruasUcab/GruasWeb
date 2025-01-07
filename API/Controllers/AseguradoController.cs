@@ -1,72 +1,60 @@
-using GrúasUCAB.Core.Ordenes.Entities;
-using GrúasUCAB.Core.Ordenes.Repositories;
+using GrúasUCAB.Core.Ordenes.DTOs;
+using GrúasUCAB.Core.Ordenes.Commands;
+using GrúasUCAB.Core.Ordenes.Queries;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GrúasUCAB.API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class AseguradoController : ControllerBase
     {
-        private readonly IAseguradoRepository _repository;
+        private readonly IMediator _mediator;
 
-        public AseguradoController(IAseguradoRepository repository)
+        public AseguradoController(IMediator mediator)
         {
-            _repository = repository;
+            _mediator = mediator;
         }
 
-        [HttpGet("{id}")]
+        
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] CreateAseguradoDTO dto)
+        {
+            var id = await _mediator.Send(new CreateAseguradoCommand { AseguradoDto = dto });
+            return CreatedAtAction(nameof(GetById), new { id }, id);
+        }
+
+        
+        [HttpGet("{id:guid}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            try
-            {
-                var asegurado = await _repository.GetByIdAsync(id);
-                return Ok(asegurado);
-            }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(new { Message = ex.Message });
-            }
+            var asegurado = await _mediator.Send(new GetAseguradoByIdQuery { Id = id });
+            return Ok(asegurado);
         }
 
+        
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var asegurados = await _repository.GetAllAsync();
+            var asegurados = await _mediator.Send(new GetAllAseguradosQuery());
             return Ok(asegurados);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create(Asegurado asegurado)
+       
+        [HttpPut("{id:guid}")]
+        public async Task<IActionResult> Update(Guid id, [FromBody] UpdateAseguradoDTO dto)
         {
-            await _repository.AddAsync(asegurado);
-            await _repository.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetById), new { id = asegurado.Id }, asegurado);
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid id, Asegurado asegurado)
-        {
-            if (id != asegurado.Id) return BadRequest();
-
-            await _repository.UpdateAsync(asegurado);
-            await _repository.SaveChangesAsync();
+            await _mediator.Send(new UpdateAseguradoCommand { Id = id, AseguradoDto = dto });
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
+        
+        [HttpDelete("{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            try
-            {
-                await _repository.DeleteAsync(id);
-                await _repository.SaveChangesAsync();
-                return NoContent();
-            }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(new { Message = ex.Message });
-            }
+            await _mediator.Send(new DeleteAseguradoCommand { Id = id });
+            return NoContent();
         }
     }
 }

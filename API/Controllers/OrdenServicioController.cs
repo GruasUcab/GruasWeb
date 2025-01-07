@@ -13,18 +13,34 @@ namespace GrúasUCAB.API.Controllers
 public class OrdenDeServicioController : ControllerBase
 {
     private readonly IMediator _mediator;
+    private readonly IOrdenDeServicioRepository _repository;
 
-    public OrdenDeServicioController(IMediator mediator)
+    public OrdenDeServicioController(IMediator mediator, IOrdenDeServicioRepository repository)
     {
         _mediator = mediator;
+        _repository =repository;
     }
 
-    [HttpGet("{id}")]
+    /*[HttpGet("{id}")]
     public async Task<IActionResult> GetById(Guid id)
     {
         var query = new GetOrdenDeServicioByIdQuery(id);
         var result = await _mediator.Send(query);
         return Ok(result);
+    }*/
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(Guid id)
+    {
+       try
+            {
+                var ordenDeServicio = await _repository.GetByIdAsync(id);
+                return Ok(ordenDeServicio);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { Message = ex.Message });
+            }
     }
 
     [HttpPost]

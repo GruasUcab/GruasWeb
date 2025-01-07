@@ -1,8 +1,10 @@
-using GrúasUCAB.Core.Ordenes.Entities;
-using GrúasUCAB.Core.Ordenes.Repositories;
 using Microsoft.EntityFrameworkCore;
+using MediatR;
+using GrúasUCAB.Core.Ordenes.Repositories;
+using GrúasUCAB.Core.Ordenes.Entities;
+using GrúasUCAB.Infrastructure.Persistence.Ordenes;
 
-namespace GrúasUCAB.Infrastructure.Persistence.Ordenes
+namespace GrúasUCAB.Infrastructure.Persistence.Asegurados
 {
     public class AseguradoRepository : IAseguradoRepository
     {
@@ -13,32 +15,41 @@ namespace GrúasUCAB.Infrastructure.Persistence.Ordenes
             _context = context;
         }
 
-        public async Task<Asegurado> GetByIdAsync(Guid id)
+        public async Task<IEnumerable<Asegurado>> GetAllAsync()
         {
-            var asegurado = await _context.Asegurados.FindAsync(id);
-            if (asegurado == null)
-            {
-                throw new KeyNotFoundException($"Asegurado con ID {id} no encontrado.");
-            }
-            return asegurado;
+            return await _context.Asegurados.ToListAsync();
         }
 
-        public async Task<IEnumerable<Asegurado>> GetAllAsync() => await _context.Asegurados.ToListAsync();
+        public async Task<Asegurado?> GetByIdAsync(Guid id)
+        {
+            return await _context.Asegurados.FindAsync(id);
+        }
 
-        public async Task AddAsync(Asegurado asegurado) => await _context.Asegurados.AddAsync(asegurado);
+        public async Task AddAsync(Asegurado asegurado)
+        {
+            await _context.Asegurados.AddAsync(asegurado);
+            await _context.SaveChangesAsync();
+        }
 
-        public Task UpdateAsync(Asegurado asegurado)
+        public async Task UpdateAsync(Asegurado asegurado)
         {
             _context.Asegurados.Update(asegurado);
-            return Task.CompletedTask;
+            await _context.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(Guid id)
         {
             var asegurado = await GetByIdAsync(id);
-            _context.Asegurados.Remove(asegurado);
+            if (asegurado != null)
+            {
+                _context.Asegurados.Remove(asegurado);
+                await _context.SaveChangesAsync();
+            }
         }
 
-        public async Task SaveChangesAsync() => await _context.SaveChangesAsync();
+        public async Task SaveChangesAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
     }
 }

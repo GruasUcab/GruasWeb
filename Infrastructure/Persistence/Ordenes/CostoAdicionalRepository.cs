@@ -1,7 +1,7 @@
-using GrúasUCAB.Core.Ordenes.Entities;
 using GrúasUCAB.Core.Ordenes.Repositories;
+using GrúasUCAB.Core.Ordenes.Entities;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
-
 namespace GrúasUCAB.Infrastructure.Persistence.Ordenes
 {
     public class CostoAdicionalRepository : ICostoAdicionalRepository
@@ -13,32 +13,37 @@ namespace GrúasUCAB.Infrastructure.Persistence.Ordenes
             _context = context;
         }
 
-        public async Task<CostoAdicional> GetByIdAsync(Guid id)
+        public async Task<IEnumerable<CostoAdicional>> GetAllAsync()
         {
-            var costoAdicional = await _context.CostosAdicionales.FindAsync(id);
-            if (costoAdicional == null)
-            {
-                throw new KeyNotFoundException($"Costo Adicional con ID {id} no encontrado.");
-            }
-            return costoAdicional;
+            return await _context.CostosAdicionales.Include(c => c.Orden).ToListAsync();
         }
 
-        public async Task<IEnumerable<CostoAdicional>> GetAllAsync() => await _context.CostosAdicionales.ToListAsync();
+        public async Task<CostoAdicional?> GetByIdAsync(Guid id)
+        {
+            return await _context.CostosAdicionales.Include(c => c.Orden)
+                                                  .FirstOrDefaultAsync(c => c.Id == id);
+        }
 
-        public async Task AddAsync(CostoAdicional costoAdicional) => await _context.CostosAdicionales.AddAsync(costoAdicional);
+        public async Task AddAsync(CostoAdicional costoAdicional)
+        {
+            await _context.CostosAdicionales.AddAsync(costoAdicional);
+        }
 
-        public Task UpdateAsync(CostoAdicional costoAdicional)
+        public async Task UpdateAsync(CostoAdicional costoAdicional)
         {
             _context.CostosAdicionales.Update(costoAdicional);
-            return Task.CompletedTask;
+            await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(CostoAdicional costoAdicional)
         {
-            var costoAdicional = await GetByIdAsync(id);
             _context.CostosAdicionales.Remove(costoAdicional);
+            await _context.SaveChangesAsync();
         }
 
-        public async Task SaveChangesAsync() => await _context.SaveChangesAsync();
+        public async Task SaveChangesAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
     }
 }

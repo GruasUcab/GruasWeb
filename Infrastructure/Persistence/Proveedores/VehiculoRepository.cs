@@ -17,13 +17,23 @@ public class VehiculoRepository : IVehiculoRepository
         await _context.SaveChangesAsync();
     }
 
-    public async Task<Vehiculo?> GetByIdAsync(Guid id)
+    /*public async Task<Vehiculo?> GetByIdAsync(Guid id)
     {
         return await _context.Vehiculos
         .AsNoTracking() // Evita problemas de seguimiento
         .Include(v => v.Proveedor) // Incluye la navegación a Proveedor
         .FirstOrDefaultAsync(v => v.Id == id);
-    }
+    }*/
+
+    public async Task<Vehiculo?> GetByIdAsync(Guid id)
+        {
+            var vehiculo = await _context.Vehiculos.FindAsync(id);
+            if (vehiculo == null)
+            {
+                throw new KeyNotFoundException($"Vehiculo con ID {id} no encontrado.");
+            }
+            return vehiculo;
+        }
 
 
     public async Task<IEnumerable<Vehiculo>> GetAllAsync()

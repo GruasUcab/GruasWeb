@@ -28,12 +28,17 @@ public class VehiculoController : ControllerBase
         return CreatedAtAction(nameof(GetVehiculoByID), new { id }, null);
     }
 
-    /*[HttpGet("{id}")]
-    public async Task<IActionResult> GetVehiculoById(Guid id)
-    {
-        var vehiculo = await _mediator.Send(new GetVehiculoByIdQuery(id));
-        return Ok(vehiculo);
-    }*/
+
+    [HttpGet]
+        public async Task<IActionResult> GetAllVehiculos()
+        {
+            var vehiculos = await _mediator.Send(new GetAllVehiculosQuery());
+            return Ok(vehiculos);
+        }
+
+        
+
+   
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetVehiculoByID(Guid id)

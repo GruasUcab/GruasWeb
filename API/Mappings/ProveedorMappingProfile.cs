@@ -8,8 +8,10 @@ public class ProveedorMappingProfile : Profile
     public ProveedorMappingProfile()
     {
         CreateMap<Vehiculo, CreateVehiculoDTO>();
+        CreateMap<Vehiculo, VehiculoDTO>();
         CreateMap<CreateVehiculoDTO, Vehiculo>();
         CreateMap<Proveedor, ProveedorDTO>();
         CreateMap<Vehiculo, Proveedor>();
+        CreateMap<Proveedor, Vehiculo>();
     }
 }

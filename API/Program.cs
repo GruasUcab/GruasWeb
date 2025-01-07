@@ -18,6 +18,7 @@ using GrúasUCAB.Infrastructure.Persistence.Asegurados;
 
 
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Agregar servicios al contenedor
@@ -67,8 +68,24 @@ builder.Services.AddDbContext<ProveedorDbContext>(options =>
 builder.Services.AddDbContext<UsuarioDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("UsuarioConnection")));
 
+
+
+//Envio de solicitud al front
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp", policy =>
+    {
+        policy.WithOrigins("http://localhost:3000") // URL del frontend
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 // Construir la aplicación
 var app = builder.Build();
+
+
+
 
 // Configurar middleware
 if (app.Environment.IsDevelopment())
@@ -77,7 +94,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-
+app.UseCors("AllowReactApp");
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();

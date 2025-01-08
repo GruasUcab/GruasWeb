@@ -32,8 +32,9 @@ public class VehiculoController : ControllerBase
     [HttpGet]
         public async Task<IActionResult> GetAllVehiculos()
         {
-            var vehiculos = await _mediator.Send(new GetAllVehiculosQuery());
-            return Ok(vehiculos);
+            var query = new GetAllVehiculosQuery();
+            var result = await _mediator.Send(query);
+            return Ok(result);
         }
 
         

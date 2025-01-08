@@ -18,20 +18,18 @@ namespace GrúasUCAB.Infrastructure.Persistence.Proveedores
     public async Task AddAsync(Proveedor proveedor)
     {
         await _context.Proveedores.AddAsync(proveedor);
-        await _context.SaveChangesAsync();
-    }
+        await _context.SaveChangesAsync();  }
+
+    
 
     public async Task<Proveedor?> GetByIdAsync(Guid id)
     {
-        return await _context.Proveedores
-            .Include(p => p.Vehiculos)
-            .FirstOrDefaultAsync(p => p.Id == id);
+        return await _context.Proveedores.FindAsync(id);
     }
 
     public async Task<IEnumerable<Proveedor>> GetAllAsync()
     {
-        return await _context.Proveedores
-            .Include(p => p.Vehiculos)
+        return await _context.Proveedores   
             .ToListAsync();
     }
 

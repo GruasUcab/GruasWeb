@@ -52,23 +52,31 @@ namespace GrúasUCAB.Infrastructure.Persistence.Proveedores
             // Configuración para la entidad Vehiculo
             modelBuilder.Entity<Vehiculo>(entity =>
     {
+        entity.ToTable("Vehiculo");
         entity.HasKey(v => v.Id);
+        
 
-        entity.Property(v => v.Marca).IsRequired().HasMaxLength(100);
-        entity.Property(v => v.Modelo).IsRequired().HasMaxLength(100);
-        entity.Property(v => v.Placa).IsRequired().HasMaxLength(50);
-        entity.Property(v => v.ProveedorId).IsRequired();
-        entity.Property(v => v.Capacidad).IsRequired();
-        entity.Property(v => v.Activo).IsRequired();
+        entity.Property(v => v.Marca)
+        .IsRequired().HasMaxLength(100);
+        entity.Property(v => v.Modelo)
+        .IsRequired().HasMaxLength(100);
+        entity.Property(v => v.Placa)
+        .IsRequired().HasMaxLength(50);
+        entity.Property(v => v.ProveedorId)
+        .IsRequired();
+        entity.Property(v => v.Capacidad)
+        .IsRequired();
+        entity.Property(v => v.Activo)
+        .IsRequired();
 
-        // Configuración de relaciones
+        /*// Configuración de relaciones
         entity.HasOne(v => v.Proveedor)
               .WithMany(p => p.Vehiculos)
               .HasForeignKey(v => v.ProveedorId)
-              .OnDelete(DeleteBehavior.Cascade);
+              .OnDelete(DeleteBehavior.Cascade);*/
 
         // Ignorar navegaciones en el constructor
-        entity.Ignore(v => v.Proveedor);
+        
     });
              modelBuilder.Entity<Conductor>(entity =>
             {

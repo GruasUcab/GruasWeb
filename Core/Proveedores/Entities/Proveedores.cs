@@ -10,9 +10,8 @@ public class Proveedor
     public bool Activo {get; private set; }
     public string Tipo {get; private set; }
     public ICollection<OrdenDeServicio> OrdenesDeServicio { get; private set; }
-
     // Relación con Vehículos
-    public ICollection<Vehiculo> Vehiculos { get; private set; } = new List<Vehiculo>();
+    
 
     public Proveedor(Guid id, string nombre, string direccion, string telefono, string email, bool activo, string tipo)
     {

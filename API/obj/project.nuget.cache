@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "E0rsM81NtEg=",
+  "dgSpecHash": "rFn2NLy4wMQ=",
   "success": true,
-  "projectFilePath": "c:\\ProyectoUcab\\GruasUcabb\\API\\API.csproj",
+  "projectFilePath": "C:\\Users\\Nelson Delgado\\Desktop\\FrontGruas\\GruasWeb\\api\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Nelson Delgado\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\Nelson Delgado\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
@@ -69,12 +69,5 @@
     "C:\\Users\\Nelson Delgado\\.nuget\\packages\\xunit.extensibility.execution\\2.9.2\\xunit.extensibility.execution.2.9.2.nupkg.sha512",
     "C:\\Users\\Nelson Delgado\\.nuget\\packages\\xunit.runner.visualstudio\\3.0.0\\xunit.runner.visualstudio.3.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json."
-    }
-  ]
+  "logs": []
 }

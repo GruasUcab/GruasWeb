@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "D6QFqIIGkME=",
+  "dgSpecHash": "mg+LugGon9k=",
   "success": true,
-  "projectFilePath": "c:\\ProyectoUcab\\GruasUcabb\\Infrastructure\\Infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\Nelson Delgado\\Desktop\\FrontGruas\\GruasWeb\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Nelson Delgado\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\Nelson Delgado\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
@@ -32,12 +32,5 @@
     "C:\\Users\\Nelson Delgado\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
     "C:\\Users\\Nelson Delgado\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json."
-    }
-  ]
+  "logs": []
 }

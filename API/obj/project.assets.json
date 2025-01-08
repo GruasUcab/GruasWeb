@@ -2758,11 +2758,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\ProyectoUcab\\GruasUcabb\\API\\API.csproj",
+      "projectUniqueName": "C:\\Users\\Nelson Delgado\\Desktop\\FrontGruas\\GruasWeb\\api\\API.csproj",
       "projectName": "API",
-      "projectPath": "c:\\ProyectoUcab\\GruasUcabb\\API\\API.csproj",
+      "projectPath": "C:\\Users\\Nelson Delgado\\Desktop\\FrontGruas\\GruasWeb\\api\\API.csproj",
       "packagesPath": "C:\\Users\\Nelson Delgado\\.nuget\\packages\\",
-      "outputPath": "c:\\ProyectoUcab\\GruasUcabb\\API\\obj\\",
+      "outputPath": "C:\\Users\\Nelson Delgado\\Desktop\\FrontGruas\\GruasWeb\\api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Nelson Delgado\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -2777,11 +2777,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "c:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj": {
-              "projectPath": "c:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj"
+            "C:\\Users\\Nelson Delgado\\Desktop\\FrontGruas\\GruasWeb\\Core\\Core.csproj": {
+              "projectPath": "C:\\Users\\Nelson Delgado\\Desktop\\FrontGruas\\GruasWeb\\Core\\Core.csproj"
             },
-            "c:\\ProyectoUcab\\GruasUcabb\\Infrastructure\\Infrastructure.csproj": {
-              "projectPath": "c:\\ProyectoUcab\\GruasUcabb\\Infrastructure\\Infrastructure.csproj"
+            "C:\\Users\\Nelson Delgado\\Desktop\\FrontGruas\\GruasWeb\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\Nelson Delgado\\Desktop\\FrontGruas\\GruasWeb\\Infrastructure\\Infrastructure.csproj"
             }
           }
         }
@@ -2888,13 +2888,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json."
-    }
-  ]
+  }
 }

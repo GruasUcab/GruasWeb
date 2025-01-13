@@ -38,7 +38,7 @@ public class VehiculoRepository : IVehiculoRepository
 
     public async Task<IEnumerable<Vehiculo>> GetAllAsync()
     {
-        return await _context.Vehiculos.Include(v => v.Proveedor).ToListAsync();
+        return await _context.Vehiculos.ToListAsync();
     }
 
     public async Task<IEnumerable<Vehiculo>> GetAllByProveedorIdAsync(Guid proveedorId)

@@ -1,4 +1,6 @@
 using GrúasUCAB.Core.Usuarios.Queries;
+using GrúasUCAB.Core.Usuarios.Entities;
+using GrúasUCAB.Core.Usuarios.Repositories;
 using GrúasUCAB.Infrastructure.Persistence.Usuarios;
 using MediatR;
 using System.Collections.Generic;
@@ -8,30 +10,19 @@ using System.Threading.Tasks;
 
 namespace GrúasUCAB.Infrastructure.Handlers.Usuarios
 {
-    public class GetAllUsuariosQueryHandler : IRequestHandler<GetAllUsuariosQuery, IEnumerable<UsuarioResponseDTO>>
+    public class GetAllUsuariosQueryHandler : IRequestHandler<GetAllUsuariosQuery, IEnumerable<Usuario>>
+{
+    private readonly IUsuarioRepository _usuarioRepository;
+
+    public GetAllUsuariosQueryHandler(IUsuarioRepository usuarioRepository)
     {
-        private readonly UsuarioDbContext _context;
-
-        public GetAllUsuariosQueryHandler(UsuarioDbContext context)
-        {
-            _context = context;
-        }
-
-        public async Task<IEnumerable<UsuarioResponseDTO>> Handle(GetAllUsuariosQuery request, CancellationToken cancellationToken)
-        {
-            var usuarios = _context.Usuarios
-                .Select(u => new UsuarioResponseDTO
-                {
-                    Id = u.Id,
-                    Nombre = u.Nombre,
-                    Apellido = u.Apellido,
-                    Email = u.Email,
-                    Activo = u.Activo,
-                    TipoUsuario = u.TipoUsuario
-                })
-                .ToList();
-
-            return await Task.FromResult(usuarios);
-        }
+        _usuarioRepository = usuarioRepository;
     }
+
+    public async Task<IEnumerable<Usuario>> Handle(GetAllUsuariosQuery request, CancellationToken cancellationToken)
+    {
+        return await _usuarioRepository.GetAllAsync();
+    }
+}
+
 }

@@ -18,18 +18,18 @@ public class GetAllVehiculosQueryHandler : IRequestHandler<GetAllVehiculosQuery,
     public async Task<IEnumerable<VehiculoDTO>> Handle(GetAllVehiculosQuery request, CancellationToken cancellationToken)
     {
         var vehiculos = await _repository.GetAllAsync();
-        return vehiculos.Select(c => new VehiculoDTO
+
+        return vehiculos.Select(v => new VehiculoDTO
         {
-            Id = c.Id,
-            Marca = c.Marca?? "",
-            Modelo = c.Modelo?? "",
-            Placa = c.Placa?? "",
-            Capacidad = c.Capacidad,
-            Activo = c.Activo
+            Id = v.Id,
+            Marca = v.Marca?? "",
+            Modelo = v.Modelo?? "",
+            Placa = v.Placa?? "",            
+            Capacidad = v.Capacidad,
+            Activo = v.Activo
         });
     }
 }
-
 
 
 }

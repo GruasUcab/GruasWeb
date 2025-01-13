@@ -7,6 +7,7 @@ using GrúasUCAB.Core.Proveedores.Repositories;
 using AutoMapper;
 using GrúasUCAB.Core.Proveedores.Entities;
 using GrúasUCAB.Core.Proveedores.Dto;
+using Microsoft.IdentityModel.Tokens;
 using GrúasUCAB.Core.Ordenes.Repositories;
 using GrúasUCAB.Infrastructure.Persistence.Ordenes;
 using FirebaseAdmin.Messaging;
@@ -14,6 +15,8 @@ using Google.Apis.Auth.OAuth2;
 using FirebaseAdmin;
 using GrúasUCAB.Core.Ordenes.Services.interfaces;
 using GrúasUCAB.Infrastructure.Persistence.Asegurados;
+using GrúasUCAB.Core.Keycloak;
+using GrúasUCAB.Infrastructure.Auth;
 
 
 
@@ -47,6 +50,30 @@ builder.Services.AddScoped<IVehiculoService, VehiculoService>();
 builder.Services.AddScoped<IConductorService, ConductorService>();
 builder.Services.AddScoped<IAseguradoRepository, AseguradoRepository>();
 builder.Services.AddScoped<ICostoAdicionalRepository, CostoAdicionalRepository>();
+builder.Services.AddScoped<IKeycloakService, KeycloakService>();
+builder.Services.AddHttpClient<IKeycloakService, KeycloakService>();
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateUsuarioCommandHandler).Assembly));
+builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
+builder.Services.AddHttpClient<IKeycloakService, KeycloakService>(client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["Keycloak:BaseUrl"]?? "");
+});
+
+builder.Services.AddAuthentication("Bearer")
+    .AddJwtBearer("Bearer", options =>
+    {
+        options.Authority = "http://localhost:8080/realms/GruasUcab";
+        options.RequireHttpsMetadata = false; // Solo para desarrollo. Habilitar HTTPS en producción.
+        options.Audience = "account";
+    });
+
+builder.Services.AddAuthorization();
+builder.Logging.AddConsole();
+builder.Logging.SetMinimumLevel(LogLevel.Debug);
+
+
+
+
 
 
 

@@ -12,13 +12,15 @@ namespace GrúasUCAB.Core.Usuarios.Repositories
         Task SaveChangesAsync();
     } */
 
-    public interface IUsuarioRepository
+public interface IUsuarioRepository
 {
-    Task CreateAsync(Usuario usuario);
-    Task<Usuario> GetByIdAsync(Guid id);
+    Task AddAsync(Usuario usuario);
+    Task<Usuario?> GetByIdAsync(Guid id);
+    Task<IEnumerable<Usuario>> GetAllAsync();
     Task UpdateAsync(Usuario usuario);
-    Task DeleteAsync(Guid id);
-    
+    Task DeleteAsync(Usuario usuario);
 }
+
+
 
 }

@@ -30,22 +30,13 @@ namespace GrúasUCAB.Infrastructure.Persistence.Usuarios
 
                 entity.Property(u => u.Apellido)
                       .IsRequired()
-                      .HasMaxLength(20);
-
-                entity.Property(u => u.Email)
-                      .IsRequired()
-                      .HasMaxLength(30);
-
-                entity.Property(u => u.Clave)
-                      .IsRequired()
-                      .HasMaxLength(16);
-
-                entity.Property(u => u.TipoUsuario)
-                      .IsRequired()
-                      .HasMaxLength(20);
+                      .HasMaxLength(20);                
 
                 entity.Property(u => u.Activo)
                       .IsRequired();
+
+                 entity.Property(u => u.Rol)
+                        .IsRequired();
 
                 // Relación con Departamento (FK)
                 entity.HasOne<Departamento>()

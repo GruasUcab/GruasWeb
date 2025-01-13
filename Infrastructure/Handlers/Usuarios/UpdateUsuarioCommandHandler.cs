@@ -1,38 +1,43 @@
 using GrúasUCAB.Core.Usuarios.Commands;
 using GrúasUCAB.Core.Usuarios.Repositories;
 using GrúasUCAB.Core.Usuarios.DTOs;
+using GrúasUCAB.Core.Usuarios.Entities;
+using GrúasUCAB.Core.Keycloak;
 using MediatR;
 
 namespace GrúasUCAB.Infrastructure.Handlers.Usuarios
 {
     public class UpdateUsuarioCommandHandler : IRequestHandler<UpdateUsuarioCommand, Unit>
 {
-    private readonly IUsuarioRepository _repository;
+    private readonly IUsuarioRepository _usuarioRepository;
+    private readonly IKeycloakService _keycloakService;
 
-    public UpdateUsuarioCommandHandler(IUsuarioRepository repository)
+    public UpdateUsuarioCommandHandler(IUsuarioRepository usuarioRepository, IKeycloakService keycloakService)
     {
-        _repository = repository;
+        _usuarioRepository = usuarioRepository;
+        _keycloakService = keycloakService;
     }
 
     public async Task<Unit> Handle(UpdateUsuarioCommand request, CancellationToken cancellationToken)
     {
-        var usuario = await _repository.GetByIdAsync(request.Id);
-
+        var usuario = await _usuarioRepository.GetByIdAsync(request.Id);
         if (usuario == null)
-            throw new KeyNotFoundException($"Usuario with Id {request.Id} not found.");
+        {
+            throw new KeyNotFoundException("Usuario no encontrado.");
+        }
 
-        usuario.UpdateNombre(request.UsuarioDto.Nombre);
-        usuario.UpdateApellido(request.UsuarioDto.Apellido);
-        usuario.UpdateEmail(request.UsuarioDto.Email);
-        usuario.UpdateClave(request.UsuarioDto.Clave);
-        usuario.UpdateActivo(request.UsuarioDto.Activo);
-        usuario.UpdateTipoUsuario(request.UsuarioDto.TipoUsuario);
-        usuario.UpdateDepartamento(request.UsuarioDto.DepartamentoId);
+        // Actualizar datos en Keycloak
+        await _keycloakService.UpdateUserAsync(usuario.Sub, $"{request.Nombre}.{request.Apellido}@example.com", request.Nombre, request.Apellido, request.Activo);
 
+        // Actualizar datos en la base de datos
+        usuario = new Usuario(usuario.Id, request.Nombre, request.Apellido, request.DepartamentoId, request.Activo, usuario.Sub, usuario.Rol);
+        await _usuarioRepository.UpdateAsync(usuario);
 
-        await _repository.UpdateAsync(usuario);
         return Unit.Value;
     }
 }
+
+
+
 
 }

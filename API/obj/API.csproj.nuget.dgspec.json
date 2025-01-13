@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\ProyectoUcab\\GruasUcabb\\API\\API.csproj": {}
+    "C:\\ProyectoUcab\\GruasUcabb\\api\\API.csproj": {}
   },
   "projects": {
-    "c:\\ProyectoUcab\\GruasUcabb\\API\\API.csproj": {
+    "C:\\ProyectoUcab\\GruasUcabb\\api\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\ProyectoUcab\\GruasUcabb\\API\\API.csproj",
+        "projectUniqueName": "C:\\ProyectoUcab\\GruasUcabb\\api\\API.csproj",
         "projectName": "API",
-        "projectPath": "c:\\ProyectoUcab\\GruasUcabb\\API\\API.csproj",
+        "projectPath": "C:\\ProyectoUcab\\GruasUcabb\\api\\API.csproj",
         "packagesPath": "C:\\Users\\Nelson Delgado\\.nuget\\packages\\",
-        "outputPath": "c:\\ProyectoUcab\\GruasUcabb\\API\\obj\\",
+        "outputPath": "C:\\ProyectoUcab\\GruasUcabb\\api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Nelson Delgado\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -26,11 +26,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "c:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj": {
-                "projectPath": "c:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj"
+              "C:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj": {
+                "projectPath": "C:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj"
               },
-              "c:\\ProyectoUcab\\GruasUcabb\\Infrastructure\\Infrastructure.csproj": {
-                "projectPath": "c:\\ProyectoUcab\\GruasUcabb\\Infrastructure\\Infrastructure.csproj"
+              "C:\\ProyectoUcab\\GruasUcabb\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "C:\\ProyectoUcab\\GruasUcabb\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -62,6 +62,14 @@
               "target": "Package",
               "version": "[11.3.0, )"
             },
+            "IdentityModel": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Keycloak.Net": {
+              "target": "Package",
+              "version": "[1.0.18, )"
+            },
             "MediatR": {
               "target": "Package",
               "version": "[12.0.0, )"
@@ -87,6 +95,14 @@
             "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
               "version": "[7.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.json": {
+              "target": "Package",
+              "version": "[9.0.0, )"
             },
             "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",
@@ -138,14 +154,14 @@
         }
       }
     },
-    "c:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj": {
+    "C:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj",
+        "projectUniqueName": "C:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "c:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj",
+        "projectPath": "C:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj",
         "packagesPath": "C:\\Users\\Nelson Delgado\\.nuget\\packages\\",
-        "outputPath": "c:\\ProyectoUcab\\GruasUcabb\\Core\\obj\\",
+        "outputPath": "C:\\ProyectoUcab\\GruasUcabb\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Nelson Delgado\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -177,9 +193,21 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Keycloak.Net": {
+              "target": "Package",
+              "version": "[1.0.18, )"
+            },
             "MediatR": {
               "target": "Package",
               "version": "[12.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.json": {
+              "target": "Package",
+              "version": "[9.0.0, )"
             }
           },
           "imports": [
@@ -202,14 +230,14 @@
         }
       }
     },
-    "c:\\ProyectoUcab\\GruasUcabb\\Infrastructure\\Infrastructure.csproj": {
+    "C:\\ProyectoUcab\\GruasUcabb\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\ProyectoUcab\\GruasUcabb\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "C:\\ProyectoUcab\\GruasUcabb\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "c:\\ProyectoUcab\\GruasUcabb\\Infrastructure\\Infrastructure.csproj",
+        "projectPath": "C:\\ProyectoUcab\\GruasUcabb\\Infrastructure\\Infrastructure.csproj",
         "packagesPath": "C:\\Users\\Nelson Delgado\\.nuget\\packages\\",
-        "outputPath": "c:\\ProyectoUcab\\GruasUcabb\\Infrastructure\\obj\\",
+        "outputPath": "C:\\ProyectoUcab\\GruasUcabb\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Nelson Delgado\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -224,8 +252,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "c:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj": {
-                "projectPath": "c:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj"
+              "C:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj": {
+                "projectPath": "C:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj"
               }
             }
           }
@@ -248,6 +276,10 @@
             "AutoMapper": {
               "target": "Package",
               "version": "[13.0.1, )"
+            },
+            "Keycloak.Net": {
+              "target": "Package",
+              "version": "[1.0.18, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",

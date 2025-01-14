@@ -21,11 +21,18 @@ public class ConductorController : ControllerBase
         _repository = repository;
     }
 
-    [HttpPost]
+    /*[HttpPost]
     public async Task<IActionResult> CreateConductor([FromBody] CreateConductorDTO conductorDto)
     {
         var id = await _mediator.Send(new CreateConductorCommand(conductorDto));
         return Ok(id);
+    }*/
+
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] CreateConductorCommand command)
+    {
+        var userId = await _mediator.Send(command);
+        return CreatedAtAction(nameof(GetConductor), new { id = userId }, null);
     }
 
     [HttpGet("{id}")]

@@ -40,6 +40,7 @@ builder.Services.AddDbContext<OrdenDbContext>(options =>
 options.UseNpgsql(builder.Configuration.GetConnectionString("OrdenConnection")));
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateUsuarioCommandHandler).Assembly));
 builder.Services.AddScoped<IDepartamentoRepository, DepartamentoRepository>();
+builder.Services.AddScoped<IUsuarioProveedorRepository, UsuarioProveedorRepository>();
 builder.Services.AddScoped<IVehiculoRepository, VehiculoRepository>();
 builder.Services.AddScoped<IConductorRepository, ConductorRepository>();
 builder.Services.AddScoped<IOrdenDeServicioRepository, OrdenDeServicioRepository>();

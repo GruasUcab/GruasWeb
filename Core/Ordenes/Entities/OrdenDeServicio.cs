@@ -14,6 +14,8 @@ namespace GrúasUCAB.Core.Ordenes.Entities
         public string? UbicacionDestino { get; private set; }
         public decimal? KilometrosRecorridos { get; private set; }
         public decimal CostoTotal { get; private set; }
+        public decimal CostoBase {get; private set;}
+        public Guid AseguradoId {get; private set;}
 
         // Relaciones
         public Guid? ConductorId { get; private set; }       
@@ -28,7 +30,7 @@ namespace GrúasUCAB.Core.Ordenes.Entities
         
 
         public OrdenDeServicio(Guid id, DateTime fechaCreacion, string estado, string ubicacionIncidente, string ubicacionDestino, 
-            decimal kilometrosRecorridos, decimal costoTotal, Guid? conductorId, Guid? proveedorId, Guid? vehiculoId)
+            decimal kilometrosRecorridos, decimal costoTotal,decimal costoBase, Guid? conductorId, Guid? proveedorId, Guid? vehiculoId, Guid aseguradoId)
         {
             Id = id;
             FechaCreacion = fechaCreacion;
@@ -37,9 +39,11 @@ namespace GrúasUCAB.Core.Ordenes.Entities
             UbicacionDestino = ubicacionDestino;
             KilometrosRecorridos = kilometrosRecorridos;
             CostoTotal = costoTotal;
+            CostoBase = costoBase;
             ConductorId = conductorId;
             ProveedorId = proveedorId;
             VehiculoId = vehiculoId;
+            AseguradoId = aseguradoId;
         }
 
          // Métodos para actualizar propiedades
@@ -57,6 +61,12 @@ namespace GrúasUCAB.Core.Ordenes.Entities
         {
             CostoTotal = nuevoCostoTotal;
         }
+
+        public void UpdateCostoBase(decimal nuevoCostoBase)
+        {
+            CostoBase = nuevoCostoBase;
+        }
+
 
         public void UpdateUbicaciones(string nuevaUbicacionIncidente, string nuevaUbicacionDestino)
         {

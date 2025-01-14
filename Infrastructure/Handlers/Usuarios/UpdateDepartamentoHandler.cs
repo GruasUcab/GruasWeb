@@ -21,7 +21,7 @@ namespace GrúasUCAB.Infrastructure.Handlers.Usuarios
                 throw new KeyNotFoundException("Departamento no encontrado.");
 
                 departamento.UpdateNombre(request.DepartamentoDto.Nombre) ;           
-                departamento.UpdateDescripcion(request.DepartamentoDto.Descripcion);
+                departamento.UpdateDescripcion(request.DepartamentoDto.Ubicacion);
 
             await _repository.UpdateAsync(departamento);
             return Unit.Value;

@@ -53,6 +53,7 @@ namespace GrúasUCAB.Infrastructure.Persistence.Proveedores
             modelBuilder.Entity<Vehiculo>(entity =>
     {
         entity.HasKey(v => v.Id);
+        entity.ToTable("Vehiculo");
 
         entity.Property(v => v.Marca).IsRequired().HasMaxLength(100);
         entity.Property(v => v.Modelo).IsRequired().HasMaxLength(100);
@@ -89,6 +90,13 @@ namespace GrúasUCAB.Infrastructure.Persistence.Proveedores
 
                   entity.Property(c => c.Activo)
                         .IsRequired();
+
+                  entity.Property(c => c.Sub)
+                        .IsRequired();
+                  
+                  entity.Property(c => c.Rol)
+                        .IsRequired();
+
 
                   /*entity.HasMany(c => c.Ordenes)
                         .WithOne(o => o.Conductor)

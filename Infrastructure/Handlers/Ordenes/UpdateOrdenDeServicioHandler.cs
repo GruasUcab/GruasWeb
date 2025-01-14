@@ -27,6 +27,7 @@ public class UpdateOrdenDeServicioCommandHandler : IRequestHandler<UpdateOrdenDe
         orden.UpdateEstado(dto.Estado);
         orden.UpdateKilometrosRecorridos(dto.KilometrosRecorridos);
         orden.UpdateCostoTotal(dto.CostoTotal);
+        orden.UpdateCostoBase(dto.CostoBase);
 
         await _repository.UpdateAsync(orden);
         return Unit.Value;

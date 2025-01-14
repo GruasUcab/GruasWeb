@@ -20,7 +20,7 @@ namespace GrúasUCAB.Infrastructure.Handlers.Usuarios
             var departamento = new Departamento(
                 Guid.NewGuid(), 
                 request.DepartamentoDto.Nombre, 
-                request.DepartamentoDto.Descripcion
+                request.DepartamentoDto.Ubicacion
             );
 
             await _repository.AddAsync(departamento);

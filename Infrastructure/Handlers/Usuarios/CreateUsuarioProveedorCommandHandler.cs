@@ -7,21 +7,21 @@ using MediatR;
 
 namespace GrúasUCAB.Infrastructure.Handlers.Usuarios
 {
-    public class CreateUsuarioCommandHandler : IRequestHandler<CreateUsuarioCommand, Guid>
+    public class CreateUsuarioProveedorCommandHandler : IRequestHandler<CreateUsuarioProveedorCommand, Guid>
     {
-        private readonly IUsuarioRepository _repository;
+        private readonly IUsuarioProveedorRepository _repository;
         private readonly IKeycloakService _keycloakService;
 
-        public CreateUsuarioCommandHandler(IUsuarioRepository repository, IKeycloakService keycloakService)
+        public CreateUsuarioProveedorCommandHandler(IUsuarioProveedorRepository repository, IKeycloakService keycloakService)
         {
             _repository = repository;
             _keycloakService = keycloakService;
         }
 
-        public async Task<Guid> Handle(CreateUsuarioCommand request, CancellationToken cancellationToken)
+        public async Task<Guid> Handle(CreateUsuarioProveedorCommand request, CancellationToken cancellationToken)
         {
             // Crear el usuario en Keycloak
-            var defaultRole = "Operador";
+            var defaultRole = "Proveedor";
             var keycloakSub = await _keycloakService.CreateUserWithRoleAsync(
                 request.UsuarioDto.Username,
                 request.UsuarioDto.Email,
@@ -42,19 +42,19 @@ namespace GrúasUCAB.Infrastructure.Handlers.Usuarios
             
 
             // Crear el usuario en la base de datos local
-            var usuario = new Usuario(
+            var usuarioProveedor = new UsuarioProveedor(
                 Guid.NewGuid(),
                 request.UsuarioDto.Nombre,
-                request.UsuarioDto.Apellido,
-                request.UsuarioDto.DepartamentoId,
+                request.UsuarioDto.Apellido,                
                 request.UsuarioDto.Activo,
                 keycloakSub,
-                "Prueba" // Rol predeterminado o pasado en el DTO
+                "Prueba",// Rol predeterminado o pasado en el DTO
+                request.UsuarioDto.ProveedorId
             );
 
-            await _repository.AddAsync(usuario);   
+            await _repository.AddAsync(usuarioProveedor);   
 
-            return usuario.Id;
+            return usuarioProveedor.Id;
         }
     }
 }

@@ -29,9 +29,11 @@ public class CreateOrdenDeServicioCommandHandler : IRequestHandler<CreateOrdenDe
             dto.UbicacionDestino,
             dto.KilometrosRecorridos,
             dto.CostoTotal,
+            dto.CostoBase,
             dto.ConductorId,
             dto.ProveedorId,
-            dto.VehiculoId
+            dto.VehiculoId,
+            dto.AseguradoId
         );
 
         await _repository.AddAsync(orden);

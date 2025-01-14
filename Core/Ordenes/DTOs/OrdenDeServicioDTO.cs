@@ -8,9 +8,11 @@ public class CreateOrdenDeServicioDTO
     public required string UbicacionDestino { get; set; }
     public decimal KilometrosRecorridos { get; set; }
     public decimal CostoTotal { get; set; }
+    public decimal CostoBase {get; set; }
     public Guid? ConductorId { get; set; }
     public Guid? ProveedorId { get; set; }
     public Guid? VehiculoId { get; set; }
+    public Guid AseguradoId {get; set;}
 }
 
 
@@ -22,6 +24,7 @@ public class UpdateOrdenDeServicioDTO
     public required string Estado { get; set; }
     public decimal KilometrosRecorridos { get; set; }
     public decimal CostoTotal { get; set; }
+    public decimal CostoBase {get; set; }
 }
 
 
@@ -34,6 +37,7 @@ public class OrdenDeServicioDTO
     public required string UbicacionDestino { get; set; }
     public decimal KilometrosRecorridos { get; set; }
     public decimal CostoTotal { get; set; }
+    public decimal CostoBase {get; set;}
     public Guid? ConductorId { get; set; }
     public Guid? ProveedorId { get; set; }
     public Guid? VehiculoId { get; set; }

@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using GrúasUCAB.Core.Proveedores.Entities;
 using GrúasUCAB.Core.Ordenes.Entities;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.Mapping;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 
 
@@ -26,7 +27,7 @@ namespace GrúasUCAB.Infrastructure.Persistence.Ordenes
             // Configuración de OrdenDeServicio
             modelBuilder.Entity<OrdenDeServicio>(entity =>
             {
-                entity.ToTable("OrdenDeServicio");
+                entity.ToTable("OrdenDeServicios");
                 entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.FechaCreacion)
@@ -50,11 +51,17 @@ namespace GrúasUCAB.Infrastructure.Persistence.Ordenes
                 entity.Property(e => e.CostoTotal)
                       .IsRequired();
 
+                  entity.Property(e => e.CostoBase)
+                        .IsRequired();
+
                 entity.Property(e => e.ConductorId)
                       .IsRequired();
                       
 
                 entity.Property(e => e.ProveedorId)
+                        .IsRequired();
+
+                  entity.Property(e => e.AseguradoId)
                         .IsRequired();
 
                       
@@ -78,6 +85,12 @@ namespace GrúasUCAB.Infrastructure.Persistence.Ordenes
 
                 entity.Property(e => e.KilometrosIncluidos)
                       .IsRequired();
+
+                  entity.Property(e => e.Nombre)
+                        .IsRequired();
+
+                  entity.Property(e => e.CostoXKilometro)
+                        .IsRequired();
             });
 
             // Configuración de Asegurado

@@ -8,6 +8,7 @@ namespace GrúasUCAB.Core.Ordenes.Entities
         public string DocumentoIdentidad { get; private set; }
         public string Telefono { get; private set; }
         public Guid PolizaId {get; private set; }
+        
 
         public Asegurado(Guid id, string nombre, string apellido, string documentoIdentidad, string telefono, Guid polizaId)
         {

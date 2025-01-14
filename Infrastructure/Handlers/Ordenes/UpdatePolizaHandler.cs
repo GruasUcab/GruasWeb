@@ -17,7 +17,7 @@ public class UpdatePolizaCommandHandler : IRequestHandler<UpdatePolizaCommand, U
         var poliza = await _repository.GetByIdAsync(request.Id);
         if (poliza == null) throw new KeyNotFoundException("Poliza not found");
 
-        poliza.Actualizar(request.PolizaDTO.TipoCobertura, request.PolizaDTO.KilometrosIncluidos);
+        poliza.Actualizar(request.PolizaDTO.TipoCobertura, request.PolizaDTO.KilometrosIncluidos, request.PolizaDTO.CostoXKilometro);
         await _repository.UpdateAsync(poliza);
 
         return Unit.Value;

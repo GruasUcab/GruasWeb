@@ -7,22 +7,23 @@ namespace GrúasUCAB.API.Controllers
 {
     [ApiController]
 [Route("api/[controller]")]
-public class UsuarioController : ControllerBase
+public class UsuarioProveedorController : ControllerBase
 {
     private readonly IMediator _mediator;
 
-    public UsuarioController(IMediator mediator)
+    public UsuarioProveedorController(IMediator mediator)
     {
         _mediator = mediator;
     }
 
+    
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateUsuarioCommand command)
     {
         var userId = await _mediator.Send(command);
         return CreatedAtAction(nameof(GetById), new { id = userId }, null);
     }
-    
+
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(Guid id)
     {

@@ -25,7 +25,7 @@ namespace GrúasUCAB.Infrastructure.Handlers.Usuarios
                 {
                     Id = d.Id,
                     Nombre = d.Nombre,
-                    Descripcion = d.Descripcion
+                    Ubicacion = d.Ubicacion
                 })
                 .ToList();
 

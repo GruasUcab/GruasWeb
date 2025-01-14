@@ -15,7 +15,7 @@ public class CreatePolizaCommandHandler : IRequestHandler<CreatePolizaCommand, G
 
     public async Task<Guid> Handle(CreatePolizaCommand request, CancellationToken cancellationToken)
     {
-        var poliza = new Poliza(Guid.NewGuid(), request.PolizaDTO.TipoCobertura, request.PolizaDTO.KilometrosIncluidos);
+        var poliza = new Poliza(Guid.NewGuid(), request.PolizaDTO.TipoCobertura, request.PolizaDTO.KilometrosIncluidos,request.PolizaDTO.Nombre, request.PolizaDTO.CostoXKilometro);
         await _repository.AddAsync(poliza);
         return poliza.Id;
     }

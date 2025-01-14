@@ -3915,11 +3915,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\ProyectoUcab\\GruasUcabb\\core\\Core.csproj",
+      "projectUniqueName": "C:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj",
       "projectName": "Core",
-      "projectPath": "C:\\ProyectoUcab\\GruasUcabb\\core\\Core.csproj",
+      "projectPath": "C:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj",
       "packagesPath": "C:\\Users\\Nelson Delgado\\.nuget\\packages\\",
-      "outputPath": "C:\\ProyectoUcab\\GruasUcabb\\core\\obj\\",
+      "outputPath": "C:\\ProyectoUcab\\GruasUcabb\\Core\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Nelson Delgado\\AppData\\Roaming\\NuGet\\NuGet.Config"

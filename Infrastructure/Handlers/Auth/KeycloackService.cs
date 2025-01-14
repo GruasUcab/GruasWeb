@@ -3,7 +3,7 @@ using System.Text;
 using System.Text.Json;
 using Microsoft.Extensions.Configuration;
 using GrúasUCAB.Core.Keycloak;
-
+using GrúasUCAB.Core.Keycloak.Entities;
 
 namespace GrúasUCAB.Infrastructure.Auth{
 public class KeycloakService : IKeycloakService
@@ -87,7 +87,9 @@ public class KeycloakService : IKeycloakService
             throw new InvalidOperationException("No se pudo extraer el userId del Location header.");
         }
         //return locationHeader?.Split('/').LastOrDefault(); // Extract User ID
-        Console.WriteLine(userId);
+        // Obtener los roles del realm
+    
+   
         return userId;
     }
 
@@ -137,5 +139,132 @@ public class KeycloakService : IKeycloakService
 
         return response.IsSuccessStatusCode;
     }
+
+    public async Task<List<KeycloakRole>> GetRealmRolesAsync()
+{
+    var token = await GetAdminTokenAsync();
+    if (token == null)
+    {
+        throw new InvalidOperationException("Failed to obtain Keycloak admin token.");
+    }
+
+    _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+    var response = await _httpClient.GetAsync($"{BaseUrl}/admin/realms/{Realm}/roles");
+    if (!response.IsSuccessStatusCode)
+    {
+        throw new InvalidOperationException("Error al obtener los roles del realm en Keycloak.");
+    }
+
+    var content = await response.Content.ReadAsStringAsync();
+    return JsonSerializer.Deserialize<List<KeycloakRole>>(content) ?? new List<KeycloakRole>();
+}
+
+public async Task AssignRealmRolesAsync(string userId, List<string> roles)
+{
+    var token = await GetAdminTokenAsync();
+    if (token == null) throw new InvalidOperationException("Failed to obtain Keycloak admin token.");
+
+    // Obtener todos los roles disponibles en el realm
+    var allRoles = await GetRealmRolesAsync();
+
+    // Filtrar los roles a asignar
+    var rolesToAssign = allRoles
+        .Where(role => roles.Contains(role.Name))
+        .Select(role => new { id = role.Id, name = role.Name })
+        .ToList();
+
+    if (!rolesToAssign.Any())
+    {
+        throw new InvalidOperationException("No se encon roles válidos para asignar.");
+    }
+
+    _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+    var response = await _httpClient.PostAsync(
+        $"{BaseUrl}/admin/realms/{Realm}/users/{userId}/role-mappings/realm",
+        new StringContent(JsonSerializer.Serialize(rolesToAssign), Encoding.UTF8, "application/json")
+    );
+
+    if (!response.IsSuccessStatusCode)
+    {
+        throw new InvalidOperationException("Error al asignar roles al usuario en Keycloak.");
+    }
+}
+
+public async Task<string> CreateUserWithRoleAsync(string username, string email, string firstName, string lastName, string password, List<string> roles)
+{
+    var userId = await CreateUserAsync(username, email, firstName, lastName, password);
+    if (string.IsNullOrEmpty(userId))
+    {
+        throw new InvalidOperationException("No se pudo crear el usuario en Keycloak.");
+    }
+
+    // Asignar roles al usuario
+    if (roles != null && roles.Any())
+    {
+        var token = await GetAdminTokenAsync();
+        if (token == null)
+        {
+            throw new InvalidOperationException("No se pudo obtener el token de administrador.");
+        }
+
+        _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+        // Obtener todos los roles disponibles
+        var allRolesResponse = await _httpClient.GetAsync($"{BaseUrl}/admin/realms/{Realm}/roles");
+        if (!allRolesResponse.IsSuccessStatusCode)
+        {
+            throw new InvalidOperationException("No se pudieron obtener los roles del realm.");
+        }
+
+        var allRolesContent = await allRolesResponse.Content.ReadAsStringAsync();
+        //var allRoles = JsonSerializer.Deserialize<List<KeycloakRole>>(allRolesContent);
+        var allRoles = JsonSerializer.Deserialize<List<KeycloakRole>>(allRolesContent, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+        
+
+        Console.WriteLine("Respuesta completa de roles:");
+        Console.WriteLine(allRolesContent);
+        Console.WriteLine("Roles deserializados:");
+        allRoles?.ForEach(role => Console.WriteLine($"- {role.Name}"));
+        Console.WriteLine("Roles solicitados:");
+        roles.ForEach(r => Console.WriteLine($"- {r}"));
+        
+
+
+        // Filtrar roles que existen
+        var rolesToAssign = allRoles?
+        .Where(r => roles.Any(reqRole => string.Equals(reqRole, r.Name, StringComparison.OrdinalIgnoreCase))) // Comparación insensible a mayúsculas
+        .Select(r => new
+        {
+            id = r.Id,
+            name = r.Name
+        })
+        .ToArray();
+            if (rolesToAssign == null || !rolesToAssign.Any())
+            {
+                throw new InvalidOperationException("No se encon roles válidos para asignar.");
+            }
+
+        // Asignar roles al usuario
+        var assignRolesResponse = await _httpClient.PostAsync(
+            $"{BaseUrl}/admin/realms/{Realm}/users/{userId}/role-mappings/realm",
+            new StringContent(JsonSerializer.Serialize(rolesToAssign), Encoding.UTF8, "application/json"));
+
+        if (!assignRolesResponse.IsSuccessStatusCode)
+        {
+            throw new InvalidOperationException("No se pudieron asignar los roles al usuario.");
+        }
+    }
+
+    return userId; // Devuelve el ID del usuario creado.
+}
+
+
+
+
 }
 }

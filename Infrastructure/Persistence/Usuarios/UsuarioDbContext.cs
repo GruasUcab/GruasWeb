@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using GrúasUCAB.Core.Usuarios.Entities;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace GrúasUCAB.Infrastructure.Persistence.Usuarios
 {
@@ -12,6 +13,7 @@ namespace GrúasUCAB.Infrastructure.Persistence.Usuarios
         // DbSets para las entidades
         public required DbSet<Usuario> Usuarios { get; set; }
         public required DbSet<Departamento> Departamentos { get; set; }
+        public required DbSet<UsuarioProveedor> UsuariosProveedores {get; set; }
 
         // Configuración de las entidades y sus mapeos
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -37,6 +39,10 @@ namespace GrúasUCAB.Infrastructure.Persistence.Usuarios
 
                  entity.Property(u => u.Rol)
                         .IsRequired();
+                  
+                  entity.Property(u => u.Sub)
+                        .IsRequired();                 
+                  
 
                 // Relación con Departamento (FK)
                 entity.HasOne<Departamento>()
@@ -55,8 +61,36 @@ namespace GrúasUCAB.Infrastructure.Persistence.Usuarios
                       .IsRequired()
                       .HasMaxLength(20);
 
-                entity.Property(d => d.Descripcion)
+                entity.Property(d => d.Ubicacion)
                       .HasMaxLength(100); // Campo opcional
+            });
+
+            modelBuilder.Entity<UsuarioProveedor>(entity =>
+            {
+                entity.ToTable("usuario"); // Nombre de la tabla
+                entity.HasKey(u => u.Id);  // Clave primaria
+
+                entity.Property(u => u.Nombre)
+                      .IsRequired()
+                      .HasMaxLength(20);
+
+                entity.Property(u => u.Apellido)
+                      .IsRequired()
+                      .HasMaxLength(20);                
+
+                entity.Property(u => u.Activo)
+                      .IsRequired();
+
+                 entity.Property(u => u.Rol)
+                        .IsRequired();
+                  
+                  entity.Property(u => u.Sub)
+                        .IsRequired();     
+                  entity.Property(u => u.ProveedorId)
+                        .IsRequired();       
+                  
+
+                
             });
         }
     }

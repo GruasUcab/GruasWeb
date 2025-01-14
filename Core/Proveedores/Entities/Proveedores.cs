@@ -22,8 +22,9 @@ public class Proveedor
         Telefono = telefono;
         Email = email;
         Activo = activo;
-        Tipo = tipo;
+        Tipo = tipo;  
         OrdenesDeServicio = new List<OrdenDeServicio>();
+
     }
 
     // Constructor vacío para Entity Framework

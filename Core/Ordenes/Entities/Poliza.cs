@@ -5,7 +5,7 @@ namespace GrúasUCAB.Core.Ordenes.Entities
     public class Poliza
     {
         public Guid Id { get; private set; }
-        public string? Nombre {get; private set;} 
+        public  string? Nombre {get; private set;} 
         public string TipoCobertura { get; private set; } = default!;
         public decimal KilometrosIncluidos { get; private set; }
         public decimal CostoXKilometro {get; private set;} 

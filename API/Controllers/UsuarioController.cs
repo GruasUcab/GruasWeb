@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using GrúasUCAB.Core.Usuarios.Queries;
 using GrúasUCAB.Core.Usuarios.Commands;
+using GrúasUCAB.Core.Usuarios.Dto;
 
 namespace GrúasUCAB.API.Controllers
 {
@@ -22,6 +23,13 @@ public class UsuarioController : ControllerBase
         var userId = await _mediator.Send(command);
         return CreatedAtAction(nameof(GetById), new { id = userId }, null);
     }
+
+    [HttpPost("Proveedor")]
+    public async Task<IActionResult> CreateProveedor([FromBody] CreateUsuarioProveedorCommand command)
+    {
+        var userId = await _mediator.Send(command);
+        return CreatedAtAction(nameof(GetById), new { id = userId }, null);
+    }
     
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(Guid id)
@@ -37,13 +45,27 @@ public class UsuarioController : ControllerBase
         return Ok(usuarios);
     }
 
-    [HttpPut("{id}")]
+    /*[HttpPut("{id}")]
     public async Task<IActionResult> Update(Guid id, [FromBody] UpdateUsuarioCommand command)
     {
         command.Id = id;
         await _mediator.Send(command);
         return NoContent();
+    }*/
+    [HttpPut]
+    public async Task<IActionResult> UpdateUsuarioCommand(UpdateUsuarioDTO usuariodto)
+    {
+        await _mediator.Send(new UpdateUsuarioCommand(usuariodto));
+        return NoContent();
     }
+
+    [HttpPut("Proveedor")]
+    public async Task<IActionResult> UpdateUsuarioProveedorCommand(UpdateUsuarioProveedorDTO usuariodto)
+    {
+        await _mediator.Send(new UpdateUsuarioProveedorCommand(usuariodto));
+        return NoContent();
+    }
+
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(Guid id)

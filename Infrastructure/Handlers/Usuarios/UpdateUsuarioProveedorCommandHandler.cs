@@ -4,16 +4,16 @@ using MediatR;
 
 namespace GrúasUCAB.Infrastructure.Handlers.Usuarios
 {
-    public class UpdateUsuarioCommandHandler : IRequestHandler<UpdateUsuarioCommand, Unit>
+    public class UpdateUsuarioProveedorCommandHandler : IRequestHandler<UpdateUsuarioProveedorCommand, Unit>
     {
         private readonly IUsuarioRepository _repository;
 
-        public UpdateUsuarioCommandHandler(IUsuarioRepository repository)
+        public UpdateUsuarioProveedorCommandHandler(IUsuarioRepository repository)
         {
             _repository = repository;
         }
 
-        public async Task<Unit> Handle(UpdateUsuarioCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(UpdateUsuarioProveedorCommand request, CancellationToken cancellationToken)
         {
             var usuario = await _repository.GetByIdAsync(request.UsuarioDTO.Id);
 
@@ -23,7 +23,7 @@ namespace GrúasUCAB.Infrastructure.Handlers.Usuarios
                 usuario.UpdateNombre(request.UsuarioDTO.Nombre) ;       
                 usuario.UpdateApellido(request.UsuarioDTO.Apellido);
                 usuario.UpdateActivo(request.UsuarioDTO.Activo);
-                usuario.UpdateDepartamento(request.UsuarioDTO.DepartamentoId);
+                usuario.UpdateProveedor(request.UsuarioDTO.ProveedorId);
                 usuario.UpdateRol(request.UsuarioDTO.Roles);
    
                 

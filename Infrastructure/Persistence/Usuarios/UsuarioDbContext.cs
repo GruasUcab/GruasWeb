@@ -12,8 +12,7 @@ namespace GrúasUCAB.Infrastructure.Persistence.Usuarios
 
         // DbSets para las entidades
         public required DbSet<Usuario> Usuarios { get; set; }
-        public required DbSet<Departamento> Departamentos { get; set; }
-        public required DbSet<UsuarioProveedor> UsuariosProveedores {get; set; }
+        public required DbSet<Departamento> Departamentos { get; set; }        
 
         // Configuración de las entidades y sus mapeos
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -41,14 +40,17 @@ namespace GrúasUCAB.Infrastructure.Persistence.Usuarios
                         .IsRequired();
                   
                   entity.Property(u => u.Sub)
-                        .IsRequired();                 
+                        .IsRequired();   
+                  
+                  entity.Property(u => u.ProveeId);  
+                  entity.Property(u => u.DepartamentoId);            
                   
 
                 // Relación con Departamento (FK)
-                entity.HasOne<Departamento>()
-                      .WithMany()
-                      .HasForeignKey(u => u.DepartamentoId)
-                      .OnDelete(DeleteBehavior.Restrict);
+                //entity.HasOne<Departamento>()
+                  //    .WithMany()
+                    //  .HasForeignKey(u => u.DepartamentoId)
+                      //.OnDelete(DeleteBehavior.Restrict);
             });
 
             // Configuración para la entidad Departamento
@@ -65,33 +67,11 @@ namespace GrúasUCAB.Infrastructure.Persistence.Usuarios
                       .HasMaxLength(100); // Campo opcional
             });
 
-            modelBuilder.Entity<UsuarioProveedor>(entity =>
-            {
-                entity.ToTable("usuario"); // Nombre de la tabla
-                entity.HasKey(u => u.Id);  // Clave primaria
-
-                entity.Property(u => u.Nombre)
-                      .IsRequired()
-                      .HasMaxLength(20);
-
-                entity.Property(u => u.Apellido)
-                      .IsRequired()
-                      .HasMaxLength(20);                
-
-                entity.Property(u => u.Activo)
-                      .IsRequired();
-
-                 entity.Property(u => u.Rol)
-                        .IsRequired();
-                  
-                  entity.Property(u => u.Sub)
-                        .IsRequired();     
-                  entity.Property(u => u.ProveedorId)
-                        .IsRequired();       
+                
                   
 
                 
-            });
+            
         }
     }
 }

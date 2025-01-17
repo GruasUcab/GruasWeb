@@ -9,6 +9,7 @@ namespace GrúasUCAB.Core.Ordenes.Repositories
         Task AddAsync(CostoAdicional costoAdicional);
         Task UpdateAsync(CostoAdicional costoAdicional);
         Task DeleteAsync(CostoAdicional costoAdicional);
+        Task<List<CostoAdicional>> GetByOrdenIdAsync(Guid ordenId);
         Task SaveChangesAsync();
     }
 }

@@ -51,4 +51,11 @@ public class CostoAdicionalController : ControllerBase
         await _mediator.Send(new DeleteCostoAdicionalCommand(id));
         return NoContent();
     }
+
+    [HttpGet("orden/{ordenId:guid}")]
+    public async Task<IActionResult> GetByOrdenId(Guid ordenId)
+    {
+        var result = await _mediator.Send(new GetCostosAdicionalesByOrdenQuery(ordenId));
+        return Ok(result);
+    }
 }

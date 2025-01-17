@@ -1,4 +1,4 @@
-using GrúasUCAB.Core.Usuarios.Entities;
+/*using GrúasUCAB.Core.Usuarios.Entities;
 
 namespace GrúasUCAB.Core.Usuarios.Repositories
 {
@@ -15,3 +15,4 @@ public interface IUsuarioProveedorRepository
 
 
 }
+*/

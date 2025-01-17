@@ -3,6 +3,7 @@ using MediatR;
 using GrúasUCAB.Core.Ordenes.DTOs;
 using GrúasUCAB.Core.Ordenes.Commands;
 using GrúasUCAB.Core.Ordenes.Repositories;
+using GrúasUCAB.Core.Ordenes.Queries;
 
 [ApiController]
 [Route("polizas")]
@@ -36,17 +37,19 @@ public class PolizaController : ControllerBase
         return NoContent();
     }
 
-    /*[HttpGet("{id}")]
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
+    {
+        var result = await _mediator.Send(new GetAllPolizasQuery());
+        return Ok(result);
+    }
+
+    [HttpGet("{id}")]
     public async Task<IActionResult> GetById(Guid id)
     {
         var result = await _mediator.Send(new GetPolizaByIdQuery(id));
         return Ok(result);
     }
 
-    [HttpGet]
-    public async Task<IActionResult> GetAll()
-    {
-        var result = await _mediator.Send(new GetAllPolizasQuery());
-        return Ok(result);
-    }*/
+    
 }

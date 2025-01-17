@@ -21,6 +21,11 @@ C:\ProyectoUcab\GruasUcabb\api\obj\Debug\net8.0\staticwebassets.pack.json
 C:\ProyectoUcab\GruasUcabb\api\obj\Debug\net8.0\scopedcss\bundle\API.styles.css
 C:\ProyectoUcab\GruasUcabb\api\obj\Debug\net8.0\API.csproj.Up2Date
 C:\ProyectoUcab\GruasUcabb\api\obj\Debug\net8.0\API.genruntimeconfig.cache
+C:\ProyectoUcab\GruasUcabb\api\obj\Debug\net8.0\API.csproj.AssemblyReference.cache
+C:\ProyectoUcab\GruasUcabb\api\obj\Debug\net8.0\API.csproj.CoreCompileInputs.cache
+C:\ProyectoUcab\GruasUcabb\api\obj\Debug\net8.0\API.MvcApplicationPartsAssemblyInfo.cs
+C:\ProyectoUcab\GruasUcabb\api\obj\Debug\net8.0\API.MvcApplicationPartsAssemblyInfo.cache
+C:\ProyectoUcab\GruasUcabb\api\obj\Debug\net8.0\API.sourcelink.json
 C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\API.dll
 C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\API.pdb
 C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\AutoMapper.dll
@@ -88,11 +93,6 @@ C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Core.dll
 C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Infrastructure.dll
 C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Core.pdb
 C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Infrastructure.pdb
-C:\ProyectoUcab\GruasUcabb\api\obj\Debug\net8.0\API.csproj.AssemblyReference.cache
-C:\ProyectoUcab\GruasUcabb\api\obj\Debug\net8.0\API.csproj.CoreCompileInputs.cache
-C:\ProyectoUcab\GruasUcabb\api\obj\Debug\net8.0\API.MvcApplicationPartsAssemblyInfo.cs
-C:\ProyectoUcab\GruasUcabb\api\obj\Debug\net8.0\API.MvcApplicationPartsAssemblyInfo.cache
-C:\ProyectoUcab\GruasUcabb\api\obj\Debug\net8.0\API.sourcelink.json
 C:\ProyectoUcab\GruasUcabb\api\obj\Debug\net8.0\API.dll
 C:\ProyectoUcab\GruasUcabb\api\obj\Debug\net8.0\refint\API.dll
 C:\ProyectoUcab\GruasUcabb\api\obj\Debug\net8.0\API.pdb

@@ -19,7 +19,7 @@ public class UpdatePolizaDTO
 public class PolizaDTO
 {
     public Guid Id { get; set; }
-    public required string Nombre {get; set;}
+    public string? Nombre {get; set;}
     public string TipoCobertura { get; set; } = default!;
     public decimal KilometrosIncluidos { get; set; }
     public decimal CostoXKilometro {get; set;}

@@ -49,7 +49,8 @@ namespace GrúasUCAB.Infrastructure.Handlers.Usuarios
                 request.UsuarioDto.DepartamentoId,
                 request.UsuarioDto.Activo,
                 keycloakSub,
-                "Prueba" // Rol predeterminado o pasado en el DTO
+                "Operador", // Rol predeterminado o pasado en el DTO
+                Guid.Empty
             );
 
             await _repository.AddAsync(usuario);   

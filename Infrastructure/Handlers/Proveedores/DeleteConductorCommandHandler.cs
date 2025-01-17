@@ -16,6 +16,7 @@ namespace GrúasUCAB.Infrastructure.Handlers.Proveedores
     public async Task<Unit> Handle(DeleteConductorCommand request, CancellationToken cancellationToken)
     {
         await _repository.DeleteAsync(request.Id);
+        
         return Unit.Value;
     }
 } 

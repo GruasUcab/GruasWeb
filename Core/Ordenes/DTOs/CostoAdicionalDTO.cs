@@ -24,4 +24,12 @@ namespace GrúasUCAB.Core.Ordenes.DTOs
         public decimal Monto { get; set; }
         public Guid OrdenId { get; set; }
     }
+
+    public class CostoAdicionalOrdenDTO
+    {
+        public Guid Id { get; set; }
+        public string? Nombre { get; set; }
+        public decimal Monto { get; set; }
+    }
 }
+

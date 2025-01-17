@@ -45,5 +45,12 @@ namespace GrúasUCAB.Infrastructure.Persistence.Ordenes
         {
             await _context.SaveChangesAsync();
         }
+
+        public async Task<List<CostoAdicional>> GetByOrdenIdAsync(Guid ordenId)
+    {
+        return await _context.CostosAdicionales
+                             .Where(c => c.OrdenId == ordenId)
+                             .ToListAsync();
+    }
     }
 }

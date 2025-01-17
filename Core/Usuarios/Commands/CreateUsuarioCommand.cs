@@ -1,4 +1,4 @@
-using GrúasUCAB.Core.Usuarios.DTOs;
+using GrúasUCAB.Core.Usuarios.Dto;
 using MediatR;
 
 namespace GrúasUCAB.Core.Usuarios.Commands

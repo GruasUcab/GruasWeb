@@ -9,10 +9,10 @@ namespace GrúasUCAB.Infrastructure.Handlers.Usuarios
 {
     public class CreateUsuarioProveedorCommandHandler : IRequestHandler<CreateUsuarioProveedorCommand, Guid>
     {
-        private readonly IUsuarioProveedorRepository _repository;
+        private readonly IUsuarioRepository _repository;
         private readonly IKeycloakService _keycloakService;
 
-        public CreateUsuarioProveedorCommandHandler(IUsuarioProveedorRepository repository, IKeycloakService keycloakService)
+        public CreateUsuarioProveedorCommandHandler(IUsuarioRepository repository, IKeycloakService keycloakService)
         {
             _repository = repository;
             _keycloakService = keycloakService;
@@ -42,19 +42,20 @@ namespace GrúasUCAB.Infrastructure.Handlers.Usuarios
             
 
             // Crear el usuario en la base de datos local
-            var usuarioProveedor = new UsuarioProveedor(
+            var usuario = new Usuario(
                 Guid.NewGuid(),
                 request.UsuarioDto.Nombre,
-                request.UsuarioDto.Apellido,                
+                request.UsuarioDto.Apellido,
+                null,                           
                 request.UsuarioDto.Activo,
                 keycloakSub,
-                "Prueba",// Rol predeterminado o pasado en el DTO
-                request.UsuarioDto.ProveedorId
+                "Proveedor",// Rol predeterminado o pasado en el DTO
+                request.UsuarioDto.ProveeId
             );
 
-            await _repository.AddAsync(usuarioProveedor);   
+            await _repository.AddAsync(usuario);   
 
-            return usuarioProveedor.Id;
+            return usuario.Id;
         }
     }
 }

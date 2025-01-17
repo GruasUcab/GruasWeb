@@ -1,4 +1,4 @@
-using GrúasUCAB.Core.Usuarios.DTOs;
+using GrúasUCAB.Core.Usuarios.Dto;
 using GrúasUCAB.Core.Keycloak.Entities;
 
 namespace GrúasUCAB.Core.Keycloak

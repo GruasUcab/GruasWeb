@@ -106,6 +106,20 @@ builder.Services.AddCors(options =>
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
+
+    
+});
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins", policy =>
+    {
+        policy.WithOrigins("*") // URL del frontend
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+
+    
 });
 
 // Construir la aplicación

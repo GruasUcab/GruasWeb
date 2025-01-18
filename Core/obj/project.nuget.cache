@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "G6m8l1gua1k=",
+  "dgSpecHash": "e6InBLuchDA=",
   "success": true,
-  "projectFilePath": "C:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj",
+  "projectFilePath": "c:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Nelson Delgado\\.nuget\\packages\\flurl.http.signed\\2.4.2\\flurl.http.signed.2.4.2.nupkg.sha512",
     "C:\\Users\\Nelson Delgado\\.nuget\\packages\\flurl.signed\\2.8.2\\flurl.signed.2.8.2.nupkg.sha512",

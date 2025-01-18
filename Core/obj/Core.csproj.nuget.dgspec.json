@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj": {}
+    "c:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj": {}
   },
   "projects": {
-    "C:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj": {
+    "c:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj",
+        "projectUniqueName": "c:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "C:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj",
+        "projectPath": "c:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj",
         "packagesPath": "C:\\Users\\Nelson Delgado\\.nuget\\packages\\",
-        "outputPath": "C:\\ProyectoUcab\\GruasUcabb\\Core\\obj\\",
+        "outputPath": "c:\\ProyectoUcab\\GruasUcabb\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Nelson Delgado\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -14,6 +14,7 @@ namespace GrúasUCAB.Infrastructure.Persistence.Ordenes
         public required DbSet<Poliza> Polizas { get; set; }
         public required DbSet<Asegurado> Asegurados { get; set; }
         public required DbSet<CostoAdicional> CostosAdicionales { get; set; }
+        public required DbSet<VehiculoAsegurado> VehiculosAsegurados {get; set;}
 
         public OrdenDbContext(DbContextOptions<OrdenDbContext> options)
             : base(options)
@@ -72,6 +73,33 @@ namespace GrúasUCAB.Infrastructure.Persistence.Ordenes
                 modelBuilder.Entity<CostoAdicional>().ToTable("CostosAdicionales");
                       
             });
+
+            modelBuilder.Entity<VehiculoAsegurado>(entity =>
+            {
+                  entity.ToTable("VehiculoAsegurado");
+                  entity.HasKey(e => e.Id);
+
+                  entity.Property(e => e.Marca)
+                        .IsRequired();
+
+                  entity.Property(e => e.Modelo)
+                        .IsRequired();
+                  
+                  entity.Property(e => e.Placa)
+                        .IsRequired();
+                  
+                  entity.Property(e => e.Tipo)
+                        .IsRequired();
+
+                  /*modelBuilder.Entity<VehiculoAsegurado>()
+                  .HasOne(c => c.Asegurado)
+                  .WithMany(o => o.)
+                  .HasForeignKey(c => c.aseguradoId)
+                  .OnDelete(DeleteBehavior.Cascade);*/
+            }      
+            
+            
+            );
 
             // Configuración de Poliza
             modelBuilder.Entity<Poliza>(entity =>

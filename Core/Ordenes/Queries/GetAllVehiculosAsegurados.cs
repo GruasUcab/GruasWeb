@@ -3,5 +3,5 @@ using GrúasUCAB.Core.Ordenes.DTOs;
 
 namespace GrúasUCAB.Core.Ordenes.Queries{
 
-    public class GetAllVehiculosAseguradosQuery : IRequest<IEnumerable<CreateVehiculoAseguradoDTO>> { }
+    public class GetAllVehiculosAseguradosQuery : IRequest<IEnumerable<VehiculoAseguradoDTO>> { }
 }

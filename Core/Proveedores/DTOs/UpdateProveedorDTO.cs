@@ -9,7 +9,7 @@ namespace GrúasUCAB.Core.Proveedores.Dto
     public required string Email { get; set; } = string.Empty;
     public required bool Activo {get; set; } = false;
     public required string Tipo {get; set; } = string.Empty;
-    public required Proveedor proveedor {get; set; }
+    
 }
 
 public class ProveedorDTO

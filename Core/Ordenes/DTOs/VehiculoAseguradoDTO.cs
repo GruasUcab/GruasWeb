@@ -25,7 +25,8 @@ namespace GrúasUCAB.Core.Ordenes.DTOs{
         public string Placa {get; set;}=string.Empty;
         public string Marca {get; set;}=string.Empty;
         public string Modelo {get; set;}= string.Empty;
-        public string Tipo {get; set;}= string.Empty;        
+        public string Tipo {get; set;}= string.Empty;   
+        public Guid AseguradoId {get; set;}     
         public Guid PolizaId {get; set;}
 
     }

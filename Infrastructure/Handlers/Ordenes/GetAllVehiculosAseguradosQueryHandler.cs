@@ -5,7 +5,7 @@ using GrúasUCAB.Core.Ordenes.Repositories;
 
 namespace GrúasUCAB.Infrastructure.Handlers.Ordenes{
 
-    public class GetAllVehiculosAseguradosQueryHandler : IRequestHandler<GetAllVehiculosAseguradosQuery, IEnumerable<CreateVehiculoAseguradoDTO>>
+    public class GetAllVehiculosAseguradosQueryHandler : IRequestHandler<GetAllVehiculosAseguradosQuery, IEnumerable<VehiculoAseguradoDTO>>
 {
     private readonly IVehiculoAseguradoRepository _repository;
 
@@ -14,11 +14,12 @@ namespace GrúasUCAB.Infrastructure.Handlers.Ordenes{
         _repository = repository;
     }
 
-    public async Task<IEnumerable<CreateVehiculoAseguradoDTO>> Handle(GetAllVehiculosAseguradosQuery request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<VehiculoAseguradoDTO>> Handle(GetAllVehiculosAseguradosQuery request, CancellationToken cancellationToken)
     {
         var vehiculosAsegurados = await _repository.GetAllAsync();
-        return vehiculosAsegurados.Select(a => new CreateVehiculoAseguradoDTO
+        return vehiculosAsegurados.Select(a => new VehiculoAseguradoDTO
         {
+            Id = a.Id,
             Placa = a.Placa?? string.Empty,
             Marca = a.Marca?? string.Empty,
             Modelo = a.Modelo?? string.Empty,

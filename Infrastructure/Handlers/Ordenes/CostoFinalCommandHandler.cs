@@ -1,0 +1,64 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using MediatR;
+using GrúasUCAB.Core.Ordenes.Commands;
+using GrúasUCAB.Core.Ordenes.Repositories;
+using GrúasUCAB.Core.Ordenes.Entities;
+
+namespace Infrastructure.Handlers.Ordenes
+{
+    public class CostoFinalCommandHandler : IRequestHandler<CostoFinalCommand, Unit>
+    {
+        private readonly IOrdenDeServicioRepository _ordenServicioRepository;
+        private readonly IPolizaRepository  _polizaRepository;
+        private readonly IVehiculoAseguradoRepository  _vehiculoAseguradoRepository;
+
+        public CostoFinalCommandHandler(IOrdenDeServicioRepository ordenServicioRepository, IPolizaRepository polizaRepository, IVehiculoAseguradoRepository vehiculoAseguradoRepository)
+        {
+            _ordenServicioRepository = ordenServicioRepository;            
+            _polizaRepository = polizaRepository;
+            _vehiculoAseguradoRepository = vehiculoAseguradoRepository;
+        }
+
+        public async Task<Unit> Handle(CostoFinalCommand request, CancellationToken cancellationToken)
+        {
+            var ordenServicio = await _ordenServicioRepository.GetByIdAsync(request.OrdenId);
+            if (ordenServicio == null)
+            {
+                throw new KeyNotFoundException("La orden de servicio no existe.");
+            }
+
+            var vehiculoAsegurado = await _vehiculoAseguradoRepository.GetByIdAsync(ordenServicio.VehiculoAseguradoId);
+
+            if(vehiculoAsegurado == null)
+            {
+                throw new KeyNotFoundException("El vehiculo asegurado no existe.");
+            }
+
+            var poliza = await _polizaRepository.GetByIdAsync(vehiculoAsegurado.PolizaId);
+
+            if (poliza == null)
+            {
+                throw new KeyNotFoundException("La poliza no existe.");
+            }
+
+            // Calcular el costo base
+            var kilometrosExtras = ordenServicio.KilometrosRecorridos - poliza.KilometrosIncluidos; // Cobertura de 30 km
+            var costoPorKilometrosExtras = kilometrosExtras > 0 ? kilometrosExtras * poliza.CostoXKilometro : 0; // $2 por km adicional
+
+            // Calcular el costo total
+            //var costoTotal = costoPorKilometrosExtras + request.CostosAdicionales;
+
+            // Actualizar la orden de servicio
+            //ordenServicio.CostoTotal = costoTotal;
+            ordenServicio.CostoBase = costoPorKilometrosExtras;
+            
+            await _ordenServicioRepository.SaveChangesAsync();
+
+            return Unit.Value;
+        }
+    }
+}

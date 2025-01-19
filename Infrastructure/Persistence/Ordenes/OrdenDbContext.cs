@@ -61,6 +61,9 @@ namespace GrúasUCAB.Infrastructure.Persistence.Ordenes
                         
 
                 entity.Property(e => e.ConductorId);
+
+                entity.Property(e => e.VehiculoAseguradoId)
+                  .IsRequired();
                       
                       
 

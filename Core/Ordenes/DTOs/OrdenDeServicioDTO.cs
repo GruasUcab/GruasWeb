@@ -6,9 +6,10 @@ public class CreateOrdenDeServicioDTO
 {
     
     public required string UbicacionIncidente { get; set; }
-    public required string UbicacionDestino { get; set; }    
-    public decimal CostoBase {get; set; }
-    public Guid AseguradoId { get; set; }    
+    public required string UbicacionDestino { get; set; }     
+    public Guid AseguradoId { get; set; }  
+    public Guid VehiculoAseguradoId {get; set;} 
+    public decimal KilometrosRecorridos {get; set;} 
 }
 
 

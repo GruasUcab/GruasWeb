@@ -24,9 +24,10 @@ public class CreateOrdenDeServicioCommandHandler : IRequestHandler<CreateOrdenDe
         var orden = new OrdenDeServicio(
             Guid.NewGuid(),              
             dto.UbicacionIncidente,
-            dto.UbicacionDestino,            
-            dto.CostoBase,
-            dto.AseguradoId
+            dto.UbicacionDestino,           
+            dto.AseguradoId,
+            dto.VehiculoAseguradoId,
+            dto.KilometrosRecorridos
             
         );
 

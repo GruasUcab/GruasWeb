@@ -92,10 +92,8 @@ namespace GrúasUCAB.Infrastructure.Persistence.Proveedores
                         .IsRequired();
 
                   entity.Property(c => c.Sub)
-                        .IsRequired();
+                        .IsRequired();                  
                   
-                  entity.Property(c => c.Rol)
-                        .IsRequired();
 
 
                   /*entity.HasMany(c => c.Ordenes)

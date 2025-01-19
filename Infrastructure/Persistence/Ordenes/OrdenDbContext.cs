@@ -35,8 +35,10 @@ namespace GrúasUCAB.Infrastructure.Persistence.Ordenes
                       .IsRequired();
 
                 entity.Property(e => e.Estado)
-                      .IsRequired()
-                      .HasMaxLength(20);
+                        .HasConversion(
+                v => v.ToString(), // Convierte el enum a string al guardar
+                v => (EstadoOrden)Enum.Parse(typeof(EstadoOrden), v) // Convierte el string a enum al leer
+            );
 
                 entity.Property(e => e.UbicacionIncidente)
                       .IsRequired()

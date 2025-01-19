@@ -53,8 +53,8 @@ namespace GrúasUCAB.Infrastructure.Handlers.Proveedores
                 request.ConductorDTO.ProveedorId,
                 request.ConductorDTO.DocumentoIdentidad,
 
-                keycloakSub,
-                "Conductor" // Rol predeterminado o pasado en el DTO
+                keycloakSub
+                
             );
 
             await _repository.AddAsync(conductor);   

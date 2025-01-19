@@ -5,11 +5,18 @@ using System;
 
 namespace GrúasUCAB.Core.Ordenes.Entities
 {
+    public enum EstadoOrden
+    {
+        Pendiente,
+        Asignada,
+        Completada,
+        Cancelada
+    }
     public class OrdenDeServicio
     {
         public Guid Id { get; private set; }
         public DateTime FechaCreacion { get; private set; }
-        public string? Estado { get; private set; } // Pendiente, Asignada, Completada, Cancelada
+        public EstadoOrden Estado { get; private set; } // Pendiente, Asignada, Completada, Cancelada
         public string? UbicacionIncidente { get; private set; }
         public string? UbicacionDestino { get; private set; }
         public decimal? KilometrosRecorridos { get; private set; }
@@ -27,9 +34,14 @@ namespace GrúasUCAB.Core.Ordenes.Entities
         public OrdenDeServicio() {}
 
         public ICollection<CostoAdicional> CostosAdicionales { get; private set; } = new List<CostoAdicional>();
+
+        public void CambiarEstado(EstadoOrden nuevoEstado)
+    {
+        Estado = nuevoEstado;
+    }
         
 
-        public OrdenDeServicio(Guid id, DateTime fechaCreacion, string estado, string ubicacionIncidente, string ubicacionDestino, 
+        public OrdenDeServicio(Guid id, DateTime fechaCreacion, EstadoOrden estado, string ubicacionIncidente, string ubicacionDestino, 
             decimal kilometrosRecorridos, decimal costoTotal,decimal costoBase, Guid? conductorId, Guid? proveedorId, Guid? vehiculoId, Guid aseguradoId)
         {
             Id = id;
@@ -47,10 +59,7 @@ namespace GrúasUCAB.Core.Ordenes.Entities
         }
 
          // Métodos para actualizar propiedades
-        public void UpdateEstado(string nuevoEstado)
-        {
-            Estado = nuevoEstado;
-        }
+        
 
         public void UpdateKilometrosRecorridos(decimal nuevosKilometros)
         {

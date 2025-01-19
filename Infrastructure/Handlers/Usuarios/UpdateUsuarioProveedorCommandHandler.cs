@@ -23,8 +23,7 @@ namespace GrúasUCAB.Infrastructure.Handlers.Usuarios
                 usuario.UpdateNombre(request.UsuarioDTO.Nombre) ;       
                 usuario.UpdateApellido(request.UsuarioDTO.Apellido);
                 usuario.UpdateActivo(request.UsuarioDTO.Activo);
-                usuario.UpdateProveedor(request.UsuarioDTO.ProveedorId);
-                usuario.UpdateRol(request.UsuarioDTO.Roles);
+                usuario.UpdateProveedor(request.UsuarioDTO.ProveedorId);                
    
                 
 

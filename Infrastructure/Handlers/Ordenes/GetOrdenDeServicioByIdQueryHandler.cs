@@ -47,7 +47,7 @@ public class GetOrdenDeServicioByIdQueryHandler : IRequestHandler<GetOrdenDeServ
         {
             Id = orden.Id,
             FechaCreacion = orden.FechaCreacion,
-            Estado = orden.Estado ?? "Pendiente",
+            Estado = orden.Estado,
             UbicacionIncidente = orden.UbicacionIncidente?? "",
             UbicacionDestino = orden.UbicacionDestino?? "",
             KilometrosRecorridos = orden.KilometrosRecorridos?? 0,

@@ -13,12 +13,12 @@ namespace GrúasUCAB.Core.Proveedores.Entities
     public Guid ProveedorId { get; private set; }
     public string DocumentoIdentidad {get; private set; }
     public string Sub { get; private set; } = null!; // Identificador de Keycloak
-    public string Rol { get; private set; } = null!;
+    
         
 
     public ICollection<OrdenDeServicio> OrdenesDeServicio { get; private set; }
 
-    public Conductor(Guid id, string nombre, string apellido, string licencia, string telefono, bool activo, Guid proveedorId, string documentoIdentidad, string sub, string rol)
+    public Conductor(Guid id, string nombre, string apellido, string licencia, string telefono, bool activo, Guid proveedorId, string documentoIdentidad, string sub)
     {
         Id = id;
         Nombre = nombre;
@@ -28,8 +28,7 @@ namespace GrúasUCAB.Core.Proveedores.Entities
         Activo = activo;
         ProveedorId = proveedorId;
         DocumentoIdentidad = documentoIdentidad;
-        Sub = sub;
-        Rol = rol;
+        Sub = sub;        
 
         OrdenesDeServicio = new List<OrdenDeServicio>();
     }

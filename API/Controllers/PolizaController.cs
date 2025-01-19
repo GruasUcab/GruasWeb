@@ -6,7 +6,7 @@ using GrúasUCAB.Core.Ordenes.Repositories;
 using GrúasUCAB.Core.Ordenes.Queries;
 
 [ApiController]
-[Route("polizas")]
+[Route("api/[controller]")]
 public class PolizaController : ControllerBase
 {
     private readonly IMediator _mediator;

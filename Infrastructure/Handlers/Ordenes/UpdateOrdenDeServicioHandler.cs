@@ -22,9 +22,7 @@ public class UpdateOrdenDeServicioCommandHandler : IRequestHandler<UpdateOrdenDe
         if (orden == null)
         {
             throw new InvalidOperationException("Orden de servicio no encontrada");
-        }
-
-        orden.UpdateEstado(dto.Estado);
+        }        
         orden.UpdateKilometrosRecorridos(dto.KilometrosRecorridos);
         orden.UpdateCostoTotal(dto.CostoTotal);
         orden.UpdateCostoBase(dto.CostoBase);

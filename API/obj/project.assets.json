@@ -1113,6 +1113,19 @@
           }
         }
       },
+      "Stateless/5.17.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/Stateless.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Stateless.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Swashbuckle.AspNetCore/6.5.0": {
         "type": "package",
         "dependencies": {
@@ -2071,7 +2084,8 @@
           "Keycloak.Net": "1.0.18",
           "MediatR": "12.0.0",
           "Microsoft.Extensions.Configuration": "9.0.0",
-          "Microsoft.Extensions.Configuration.json": "9.0.0"
+          "Microsoft.Extensions.Configuration.json": "9.0.0",
+          "Stateless": "5.17.0"
         },
         "compile": {
           "bin/placeholder/Core.dll": {}
@@ -3861,6 +3875,27 @@
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.nuspec",
         "runtimes/ubuntu.16.10-x64/native/System.Security.Cryptography.Native.OpenSsl.so"
+      ]
+    },
+    "Stateless/5.17.0": {
+      "sha512": "SG1EPlbLUorTbf1m/5g75kTHDWIsX0GHxHKyVbH0Ws89KRrm+tAzVqt83q6Rmvkk3ZXgAXOJYCVXdd8cMVFyRQ==",
+      "type": "package",
+      "path": "stateless/5.17.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "Stateless.png",
+        "lib/net462/Stateless.dll",
+        "lib/net462/Stateless.xml",
+        "lib/net8.0/Stateless.dll",
+        "lib/net8.0/Stateless.xml",
+        "lib/net9.0/Stateless.dll",
+        "lib/net9.0/Stateless.xml",
+        "lib/netstandard2.0/Stateless.dll",
+        "lib/netstandard2.0/Stateless.xml",
+        "stateless.5.17.0.nupkg.sha512",
+        "stateless.nuspec"
       ]
     },
     "Swashbuckle.AspNetCore/6.5.0": {
@@ -6235,6 +6270,7 @@
       "Microsoft.Extensions.DependencyInjection >= 9.0.0",
       "Moq >= 4.20.72",
       "Newtonsoft.Json >= 13.0.1",
+      "Stateless >= 5.17.0",
       "Swashbuckle.AspNetCore >= 6.5.0",
       "xunit >= 2.9.2",
       "xunit.runner.visualstudio >= 3.0.0"
@@ -6354,6 +6390,10 @@
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[13.0.1, )"
+          },
+          "Stateless": {
+            "target": "Package",
+            "version": "[5.17.0, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

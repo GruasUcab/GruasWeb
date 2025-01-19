@@ -35,8 +35,7 @@ public class CreateUsuarioProveedorDTO
     public string Nombre { get; set; } = null!;
     public string Apellido { get; set; } = null!;
     public Guid DepartamentoId { get; set; }
-    public bool Activo { get; set; }
-    public string Roles { get; set; } = null!;
+    public bool Activo { get; set; }    
 }
 
 
@@ -46,8 +45,7 @@ public class UpdateUsuarioProveedorDTO
     public string Nombre { get; set; } = null!;
     public string Apellido { get; set; } = null!;
     public Guid ProveedorId { get; set; }
-    public bool Activo { get; set; }
-    public string Roles { get; set; } = null!;
+    public bool Activo { get; set; }    
 }
 
 }

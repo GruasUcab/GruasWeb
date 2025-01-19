@@ -31,7 +31,6 @@ C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Microsoft.AspNetCore.Authenticat
 C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Microsoft.AspNetCore.OpenApi.dll
 C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
-C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Microsoft.Extensions.Configuration.dll
 C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Abstractions.dll
@@ -49,8 +48,6 @@ C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Microsoft.IdentityModel.Protocol
 C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Microsoft.OpenApi.dll
-C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Npgsql.dll
-C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -75,12 +72,16 @@ C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Google.Apis.Core.dll
 C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Humanizer.dll
 C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\IdentityModel.dll
 C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Keycloak.Net.dll
+C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Design.dll
 C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
 C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
 C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Mono.TextTemplating.dll
 C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Moq.dll
 C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Npgsql.dll
+C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\Stateless.dll
 C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\System.CodeDom.dll
 C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\xunit.assert.dll
 C:\ProyectoUcab\GruasUcabb\api\bin\Debug\net8.0\xunit.core.dll

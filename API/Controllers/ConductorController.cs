@@ -49,10 +49,10 @@ public class ConductorController : ControllerBase
             }
     }
 
-    [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateConductor(Guid id, [FromBody] UpdateConductorDTO conductorDto)
+    [HttpPut]
+    public async Task<IActionResult> UpdateConductor(UpdateConductorDTO conductorDto)
     {
-        conductorDto.Id = id;
+        
         await _mediator.Send(new UpdateConductorCommand(conductorDto));
         return NoContent();
     }

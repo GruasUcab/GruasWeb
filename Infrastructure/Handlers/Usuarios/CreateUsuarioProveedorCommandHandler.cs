@@ -48,8 +48,7 @@ namespace GrúasUCAB.Infrastructure.Handlers.Usuarios
                 request.UsuarioDto.Apellido,
                 null,                           
                 request.UsuarioDto.Activo,
-                keycloakSub,
-                "Proveedor",// Rol predeterminado o pasado en el DTO
+                keycloakSub,                
                 request.UsuarioDto.ProveeId
             );
 

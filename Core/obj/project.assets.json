@@ -462,6 +462,19 @@
           }
         }
       },
+      "Stateless/5.17.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/Stateless.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Stateless.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "System.Collections/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -1888,6 +1901,27 @@
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.nuspec",
         "runtimes/ubuntu.16.10-x64/native/System.Security.Cryptography.Native.OpenSsl.so"
+      ]
+    },
+    "Stateless/5.17.0": {
+      "sha512": "SG1EPlbLUorTbf1m/5g75kTHDWIsX0GHxHKyVbH0Ws89KRrm+tAzVqt83q6Rmvkk3ZXgAXOJYCVXdd8cMVFyRQ==",
+      "type": "package",
+      "path": "stateless/5.17.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "Stateless.png",
+        "lib/net462/Stateless.dll",
+        "lib/net462/Stateless.xml",
+        "lib/net8.0/Stateless.dll",
+        "lib/net8.0/Stateless.xml",
+        "lib/net9.0/Stateless.dll",
+        "lib/net9.0/Stateless.xml",
+        "lib/netstandard2.0/Stateless.dll",
+        "lib/netstandard2.0/Stateless.xml",
+        "stateless.5.17.0.nupkg.sha512",
+        "stateless.nuspec"
       ]
     },
     "System.Collections/4.3.0": {
@@ -3906,7 +3940,8 @@
       "Keycloak.Net >= 1.0.18",
       "MediatR >= 12.0.0",
       "Microsoft.Extensions.Configuration >= 9.0.0",
-      "Microsoft.Extensions.Configuration.json >= 9.0.0"
+      "Microsoft.Extensions.Configuration.json >= 9.0.0",
+      "Stateless >= 5.17.0"
     ]
   },
   "packageFolders": {
@@ -3915,11 +3950,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj",
+      "projectUniqueName": "C:\\ProyectoUcab\\GruasUcabb\\core\\Core.csproj",
       "projectName": "Core",
-      "projectPath": "C:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj",
+      "projectPath": "C:\\ProyectoUcab\\GruasUcabb\\core\\Core.csproj",
       "packagesPath": "C:\\Users\\Nelson Delgado\\.nuget\\packages\\",
-      "outputPath": "C:\\ProyectoUcab\\GruasUcabb\\Core\\obj\\",
+      "outputPath": "C:\\ProyectoUcab\\GruasUcabb\\core\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Nelson Delgado\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -3966,6 +4001,10 @@
           "Microsoft.Extensions.Configuration.json": {
             "target": "Package",
             "version": "[9.0.0, )"
+          },
+          "Stateless": {
+            "target": "Package",
+            "version": "[5.17.0, )"
           }
         },
         "imports": [

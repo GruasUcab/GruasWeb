@@ -35,10 +35,7 @@ namespace GrúasUCAB.Infrastructure.Persistence.Usuarios
 
                 entity.Property(u => u.Activo)
                       .IsRequired();
-
-                 entity.Property(u => u.Rol)
-                        .IsRequired();
-                  
+                 
                   entity.Property(u => u.Sub)
                         .IsRequired();   
                   

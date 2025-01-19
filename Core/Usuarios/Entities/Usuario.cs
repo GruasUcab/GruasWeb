@@ -9,8 +9,7 @@ namespace GrúasUCAB.Core.Usuarios.Entities
         public string Apellido { get; private set; } = null!;
         public Guid? DepartamentoId { get; private set; }
         public bool Activo { get; private set; }
-        public string Sub { get; private set; } = null!; // Identificador de Keycloak
-        public string Rol { get; private set; } = null!;
+        public string Sub { get; private set; } = null!; // Identificador de Keycloak        
         public Guid? ProveeId {get; private set; }        
         
 
@@ -21,13 +20,12 @@ namespace GrúasUCAB.Core.Usuarios.Entities
             Apellido = apellido;
             DepartamentoId = departamentoId;
             Activo = activo;
-            Sub = sub;
-            Rol = rol;
+            Sub = sub;            
             
             
         }
 
-        public Usuario(Guid id, string nombre, string apellido, Guid? departamentoId, bool activo, string sub, string rol, Guid? proveeId)
+        public Usuario(Guid id, string nombre, string apellido, Guid? departamentoId, bool activo, string sub, Guid? proveeId)
         {
             Id = id;
             Nombre = nombre;
@@ -35,7 +33,6 @@ namespace GrúasUCAB.Core.Usuarios.Entities
             DepartamentoId = departamentoId;
             Activo = activo;
             Sub = sub;
-            Rol = rol;
             ProveeId = proveeId;
 
             
@@ -45,8 +42,7 @@ namespace GrúasUCAB.Core.Usuarios.Entities
         public void UpdateNombre(string nombre) => Nombre = nombre;
         public void UpdateApellido(string apellido) => Apellido = apellido;
         public void UpdateDepartamento(Guid departamentoId) => DepartamentoId = departamentoId;
-        public void UpdateActivo(bool activo) => Activo = activo;
-        public void UpdateRol(string rol) => Rol = rol;
+        public void UpdateActivo(bool activo) => Activo = activo;        
         public void UpdateProveedor(Guid proveeId) => ProveeId = proveeId;
         
     }

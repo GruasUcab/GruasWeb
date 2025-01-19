@@ -22,18 +22,12 @@ public class CreateOrdenDeServicioCommandHandler : IRequestHandler<CreateOrdenDe
         
 
         var orden = new OrdenDeServicio(
-            Guid.NewGuid(),
-            dto.FechaCreacion,
-            dto.Estado,
+            Guid.NewGuid(),              
             dto.UbicacionIncidente,
-            dto.UbicacionDestino,
-            dto.KilometrosRecorridos,
-            dto.CostoTotal,
+            dto.UbicacionDestino,            
             dto.CostoBase,
-            dto.ConductorId,
-            dto.ProveedorId,
-            dto.VehiculoId,
             dto.AseguradoId
+            
         );
 
         await _repository.AddAsync(orden);

@@ -4,6 +4,7 @@ using GrúasUCAB.Core.Usuarios.Repositories;
 using Microsoft.EntityFrameworkCore;
 using GrúasUCAB.Infrastructure.Handlers.Usuarios;
 using GrúasUCAB.Core.Proveedores.Repositories;
+using GrúasUCAB.Infrastructure.Handlers.Ordenes;
 using AutoMapper;
 using GrúasUCAB.Core.Proveedores.Entities;
 using GrúasUCAB.Core.Proveedores.Dto;
@@ -17,6 +18,7 @@ using GrúasUCAB.Core.Ordenes.Services.interfaces;
 using GrúasUCAB.Infrastructure.Persistence.Asegurados;
 using GrúasUCAB.Core.Keycloak;
 using GrúasUCAB.Infrastructure.Auth;
+using GrúasUCAB.Core.Ordenes.Commands;
 
 
 
@@ -52,6 +54,7 @@ builder.Services.AddScoped<IConductorService, ConductorService>();
 builder.Services.AddScoped<IAseguradoRepository, AseguradoRepository>();
 builder.Services.AddScoped<ICostoAdicionalRepository, CostoAdicionalRepository>();
 builder.Services.AddScoped<IKeycloakService, KeycloakService>();
+builder.Services.AddScoped<EstadoOrdenMachine>();
 builder.Services.AddHttpClient<IKeycloakService, KeycloakService>();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateUsuarioCommandHandler).Assembly));
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);

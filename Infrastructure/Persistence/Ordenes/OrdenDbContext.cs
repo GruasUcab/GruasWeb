@@ -31,8 +31,8 @@ namespace GrúasUCAB.Infrastructure.Persistence.Ordenes
                 entity.ToTable("OrdenDeServicios");
                 entity.HasKey(e => e.Id);
 
-                entity.Property(e => e.FechaCreacion)
-                      .IsRequired();
+                entity.Property(e => e.FechaCreacion);
+                      
 
                 entity.Property(e => e.Estado)
                         .HasConversion(
@@ -44,33 +44,36 @@ namespace GrúasUCAB.Infrastructure.Persistence.Ordenes
                       .IsRequired()
                       .HasMaxLength(40);
 
+                  entity.Property(e => e.UbicacionConductor);
+
+
                 entity.Property(e => e.UbicacionDestino)
                       .IsRequired()
                       .HasMaxLength(40);
 
-                entity.Property(e => e.KilometrosRecorridos)
-                      .IsRequired();
-
-                entity.Property(e => e.CostoTotal)
-                      .IsRequired();
-
-                  entity.Property(e => e.CostoBase)
-                        .IsRequired();
-
-                entity.Property(e => e.ConductorId)
-                      .IsRequired();
+                entity.Property(e => e.KilometrosRecorridos);
                       
 
-                entity.Property(e => e.ProveedorId)
-                        .IsRequired();
+                entity.Property(e => e.CostoTotal);
+                      
 
-                  entity.Property(e => e.AseguradoId)
-                        .IsRequired();
+                  entity.Property(e => e.CostoBase);
+                        
+
+                entity.Property(e => e.ConductorId);
+                      
+                      
+
+                entity.Property(e => e.ProveedorId);
+                        
+
+                  entity.Property(e => e.AseguradoId);
+                        
 
                       
 
-                entity.Property(e => e.VehiculoId)
-                        .IsRequired();
+                entity.Property(e => e.VehiculoId);
+                        
 
                 modelBuilder.Entity<CostoAdicional>().ToTable("CostosAdicionales");
                       

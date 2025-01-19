@@ -1,5 +1,6 @@
 using GrúasUCAB.Core.Proveedores.Entities;
 using System;
+using System.Collections.Specialized;
 
 
 
@@ -21,7 +22,7 @@ namespace GrúasUCAB.Core.Ordenes.Entities
         public string? UbicacionDestino { get; private set; }
         public decimal? KilometrosRecorridos { get; private set; }
         public decimal CostoTotal { get; private set; }
-        public decimal CostoBase {get; private set;}
+        public decimal? CostoBase {get; private set;}
         public Guid AseguradoId {get; private set;}
 
         // Relaciones
@@ -29,7 +30,8 @@ namespace GrúasUCAB.Core.Ordenes.Entities
 
         public Guid? ProveedorId { get; private set; }        
 
-        public Guid? VehiculoId { get; private set; }       
+        public Guid? VehiculoId { get; private set; }
+        public string? UbicacionConductor {get; private set;}       
         
         public OrdenDeServicio() {}
 
@@ -40,21 +42,14 @@ namespace GrúasUCAB.Core.Ordenes.Entities
         Estado = nuevoEstado;
     }
         
+        
 
-        public OrdenDeServicio(Guid id, DateTime fechaCreacion, EstadoOrden estado, string ubicacionIncidente, string ubicacionDestino, 
-            decimal kilometrosRecorridos, decimal costoTotal,decimal costoBase, Guid? conductorId, Guid? proveedorId, Guid? vehiculoId, Guid aseguradoId)
+        public OrdenDeServicio(Guid id, string ubicacionIncidente, string ubicacionDestino,decimal costoBase, Guid aseguradoId)
         {
-            Id = id;
-            FechaCreacion = fechaCreacion;
-            Estado = estado;
+            Id = id;            
             UbicacionIncidente = ubicacionIncidente;
-            UbicacionDestino = ubicacionDestino;
-            KilometrosRecorridos = kilometrosRecorridos;
-            CostoTotal = costoTotal;
-            CostoBase = costoBase;
-            ConductorId = conductorId;
-            ProveedorId = proveedorId;
-            VehiculoId = vehiculoId;
+            UbicacionDestino = ubicacionDestino;         
+            CostoBase = costoBase;      
             AseguradoId = aseguradoId;
         }
 
@@ -82,6 +77,13 @@ namespace GrúasUCAB.Core.Ordenes.Entities
             UbicacionIncidente = nuevaUbicacionIncidente;
             UbicacionDestino = nuevaUbicacionDestino;
         }
+
+        public void AsignarConductorYProveedor(Guid conductorId, Guid proveedorId, string ubicacionConductor)
+    {
+        ConductorId = conductorId;
+        ProveedorId = proveedorId;
+        UbicacionConductor = ubicacionConductor;
+    }
     }
 }
 

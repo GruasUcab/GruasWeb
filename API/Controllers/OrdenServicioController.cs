@@ -14,11 +14,13 @@ public class OrdenDeServicioController : ControllerBase
 {
     private readonly IMediator _mediator;
     private readonly IOrdenDeServicioRepository _repository;
+    private readonly EstadoOrdenMachine _estadoOrdenMachine;
 
-    public OrdenDeServicioController(IMediator mediator, IOrdenDeServicioRepository repository)
+    public OrdenDeServicioController(IMediator mediator, IOrdenDeServicioRepository repository, EstadoOrdenMachine estadoOrdenMachine)
     {
         _mediator = mediator;
         _repository =repository;
+        _estadoOrdenMachine = estadoOrdenMachine;
     }
 
     /*[HttpGet("{id}")]
@@ -65,6 +67,48 @@ public class OrdenDeServicioController : ControllerBase
         var command = new DeleteOrdenDeServicioCommand(id);
         await _mediator.Send(command);
         return NoContent();
+    }
+
+     [HttpPost("asignar")]
+    public async Task<IActionResult> AsignarConductorYProveedor([FromBody] AsignarConductorProveedorDTO dto)
+    {
+        try
+        {
+            await _estadoOrdenMachine.AsignarConductorYProveedor(dto.OrdenId, dto.ConductorId, dto.ProveedorId, dto.UbicacionConductor);
+            return Ok("Conductor y Proveedor asignados con éxito.");
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    [HttpPut("finalizar/{id}")]
+    public async Task<IActionResult> FinalizarOrden(Guid id)
+    {
+        try
+        {
+            await _estadoOrdenMachine.FinalizarOrden(id);
+            return Ok("Orden finalizada con éxito.");
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    [HttpPut("cancelar/{id}")]
+    public async Task<IActionResult> CancelarOrden(Guid id)
+    {
+        try
+        {
+            await _estadoOrdenMachine.CancelarOrden(id);
+            return Ok("Orden cancelada con éxito.");
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 }
 

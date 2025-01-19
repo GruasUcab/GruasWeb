@@ -20,10 +20,10 @@ namespace GrúasUCAB.Infrastructure.Handlers.Ordenes{
         return asegurados.Select(a => new AseguradoDTO
         {
             Id = a.Id,
-            Nombre = a.Nombre,
-            Apellido = a.Apellido,
-            DocumentoIdentidad = a.DocumentoIdentidad,
-            Telefono = a.Telefono
+            Nombre = a.Nombre?? string.Empty,
+            Apellido = a.Apellido?? string.Empty,
+            DocumentoIdentidad = a.DocumentoIdentidad?? string.Empty,
+            Telefono = a.Telefono?? string.Empty
         });
     }
 }

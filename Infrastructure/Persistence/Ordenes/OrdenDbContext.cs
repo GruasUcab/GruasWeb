@@ -93,6 +93,12 @@ namespace GrúasUCAB.Infrastructure.Persistence.Ordenes
                   entity.Property(e => e.Tipo)
                         .IsRequired();
 
+                  entity.Property(e => e.AseguradoId)
+                        .IsRequired();
+                  
+                  entity.Property(e => e.PolizaId)
+                        .IsRequired();
+
                   /*modelBuilder.Entity<VehiculoAsegurado>()
                   .HasOne(c => c.Asegurado)
                   .WithMany(o => o.)
@@ -144,8 +150,7 @@ namespace GrúasUCAB.Infrastructure.Persistence.Ordenes
                 entity.Property(e => e.Telefono)
                       .IsRequired();
 
-                entity.Property(e => e.PolizaId)
-                        .IsRequired();
+                
                       
             });
 

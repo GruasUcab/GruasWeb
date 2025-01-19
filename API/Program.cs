@@ -42,6 +42,7 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Creat
 builder.Services.AddScoped<IDepartamentoRepository, DepartamentoRepository>();
 builder.Services.AddScoped<IVehiculoRepository, VehiculoRepository>();
 builder.Services.AddScoped<IConductorRepository, ConductorRepository>();
+builder.Services.AddScoped<IVehiculoAseguradoRepository, VehiculoAseguradoRepository>();
 builder.Services.AddScoped<IOrdenDeServicioRepository, OrdenDeServicioRepository>();
 builder.Services.AddScoped<IPolizaRepository, PolizaRepository>();
 builder.Services.AddAutoMapper(typeof(Program));

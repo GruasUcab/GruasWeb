@@ -23,10 +23,10 @@ namespace GrúasUCAB.Infrastructure.Handlers.Ordenes{
         return new AseguradoDTO
         {
             Id = asegurado.Id,
-            Nombre = asegurado.Nombre,
-            Apellido = asegurado.Apellido,
-            DocumentoIdentidad = asegurado.DocumentoIdentidad,
-            Telefono = asegurado.Telefono
+            Nombre = asegurado.Nombre?? string.Empty,
+            Apellido = asegurado.Apellido?? string.Empty,
+            DocumentoIdentidad = asegurado.DocumentoIdentidad?? string.Empty,
+            Telefono = asegurado.Telefono?? string.Empty
         };
     }
 }

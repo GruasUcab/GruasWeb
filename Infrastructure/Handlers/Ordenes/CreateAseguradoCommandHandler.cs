@@ -16,7 +16,7 @@ public class CreateAseguradoCommandHandler : IRequestHandler<CreateAseguradoComm
 
     public async Task<Guid> Handle(CreateAseguradoCommand request, CancellationToken cancellationToken)
     {
-        var asegurado = new Asegurado(Guid.NewGuid(), request.AseguradoDto.Nombre, request.AseguradoDto.Apellido, request.AseguradoDto.DocumentoIdentidad, request.AseguradoDto.Telefono, request.AseguradoDto.PolizaId);
+        var asegurado = new Asegurado(Guid.NewGuid(), request.AseguradoDto.Nombre, request.AseguradoDto.Apellido, request.AseguradoDto.DocumentoIdentidad, request.AseguradoDto.Telefono);
         await _repository.AddAsync(asegurado);
         await _repository.SaveChangesAsync();
         return asegurado.Id;

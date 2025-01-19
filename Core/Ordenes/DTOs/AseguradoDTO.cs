@@ -6,7 +6,7 @@ namespace GrúasUCAB.Core.Ordenes.DTOs{
         public required string Apellido { get; set; }
         public required string DocumentoIdentidad { get; set; }
         public required string Telefono { get; set; }
-        public Guid PolizaId { get; set;}
+        
     }
 
 
@@ -27,8 +27,10 @@ namespace GrúasUCAB.Core.Ordenes.DTOs{
         public required string Apellido { get; set; }
         public required string DocumentoIdentidad { get; set; }
         public required string Telefono { get; set; }
-        public Guid PolizaId { get; set; }
+        
     }
+
+    
 
 
 

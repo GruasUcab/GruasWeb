@@ -27,7 +27,11 @@ public class CreateOrdenDeServicioCommandHandler : IRequestHandler<CreateOrdenDe
             dto.UbicacionDestino,           
             dto.AseguradoId,
             dto.VehiculoAseguradoId,
-            dto.KilometrosRecorridos
+            dto.KilometrosRecorridos,
+            dto.LatitudDestino,
+            dto.LongitudDestino,
+            dto.LatitudIncidente,
+            dto.LongitudIncidente
             
         );
 

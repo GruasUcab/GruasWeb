@@ -71,6 +71,18 @@ namespace GrúasUCAB.Infrastructure.Persistence.Ordenes
                         
 
                   entity.Property(e => e.AseguradoId);
+
+                  entity.Property(e => e.LatitudDestino)
+                        .IsRequired();
+
+                  entity.Property(e => e.LongitudDestino)
+                        .IsRequired();
+
+                  entity.Property(e => e.LatitudIncidente)
+                        .IsRequired();
+
+                  entity.Property(e => e.LongitudIncidente)
+                        .IsRequired();
                         
 
                       

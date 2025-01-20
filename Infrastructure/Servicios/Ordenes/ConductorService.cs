@@ -1,4 +1,4 @@
-using GrúasUCAB.Core.Proveedores.Dto;
+/*using GrúasUCAB.Core.Proveedores.Dto;
 using GrúasUCAB.Core.Ordenes.Services.interfaces;
 using GrúasUCAB.Infrastructure.Persistence.Proveedores;
 using Microsoft.EntityFrameworkCore;
@@ -25,4 +25,4 @@ public class ConductorService : IConductorService
             Licencia = conductor.Licencia
         };
     }
-}
+}*/

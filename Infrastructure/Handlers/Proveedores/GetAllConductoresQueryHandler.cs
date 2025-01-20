@@ -23,7 +23,9 @@ public class GetAllConductoresQueryHandler : IRequestHandler<GetAllConductoresQu
             Nombre = c.Nombre,
             Apellido = c.Apellido,
             Licencia = c.Licencia,
-            ProveedorId = c.ProveedorId
+            ProveedorId = c.ProveedorId,
+            Longitud = c.Longitud?? string.Empty,
+            Latitud = c.Latitud?? string.Empty
         });
     }
 }

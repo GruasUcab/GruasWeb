@@ -50,7 +50,7 @@ builder.Services.AddScoped<IPolizaRepository, PolizaRepository>();
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddScoped<IProveedorService, ProveedorService>();
 builder.Services.AddScoped<IVehiculoService, VehiculoService>();
-builder.Services.AddScoped<IConductorService, ConductorService>();
+//builder.Services.AddScoped<IConductorService, ConductorService>();
 builder.Services.AddScoped<IAseguradoRepository, AseguradoRepository>();
 builder.Services.AddScoped<ICostoAdicionalRepository, CostoAdicionalRepository>();
 builder.Services.AddScoped<IKeycloakService, KeycloakService>();

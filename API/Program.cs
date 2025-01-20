@@ -4,6 +4,7 @@ using GrúasUCAB.Core.Usuarios.Repositories;
 using Microsoft.EntityFrameworkCore;
 using GrúasUCAB.Infrastructure.Handlers.Usuarios;
 using GrúasUCAB.Core.Proveedores.Repositories;
+using GrúasUCAB.Infrastructure.Handlers;
 using GrúasUCAB.Infrastructure.Handlers.Ordenes;
 using AutoMapper;
 using GrúasUCAB.Core.Proveedores.Entities;
@@ -57,6 +58,7 @@ builder.Services.AddScoped<IKeycloakService, KeycloakService>();
 builder.Services.AddScoped<EstadoOrdenMachine>();
 builder.Services.AddHttpClient<IKeycloakService, KeycloakService>();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateUsuarioCommandHandler).Assembly));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetAllUsuariosProveedoresQueryHandler).Assembly));
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 builder.Services.AddHttpClient<IKeycloakService, KeycloakService>(client =>
 {

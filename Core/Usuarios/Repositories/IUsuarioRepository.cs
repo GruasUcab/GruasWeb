@@ -1,4 +1,6 @@
 using GrúasUCAB.Core.Usuarios.Entities;
+using System.Linq.Expressions;
+
 
 namespace GrúasUCAB.Core.Usuarios.Repositories
 {
@@ -19,6 +21,7 @@ public interface IUsuarioRepository
     Task<IEnumerable<Usuario>> GetAllAsync();
     Task UpdateAsync(Usuario usuario);
     Task DeleteAsync(Usuario usuario);
+    Task<IEnumerable<Usuario>> GetAllAsync(Expression<Func<Usuario, bool>> predicate);
 }
 
 

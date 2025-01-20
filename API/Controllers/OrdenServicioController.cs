@@ -50,7 +50,8 @@ public class OrdenDeServicioController : ControllerBase
     {
         var command = new CreateOrdenDeServicioCommand(ordenDeServicioDTO);
         var ordenId = await _mediator.Send(command);
-        return CreatedAtAction(nameof(GetById), new { id = ordenId }, null);
+            //return CreatedAtAction(nameof(GetById), new { id = ordenId }, null);
+            return Ok(new { id = ordenId });
     }
 
     [HttpPut("{id}")]

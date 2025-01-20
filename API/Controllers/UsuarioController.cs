@@ -73,10 +73,16 @@ public class UsuarioController : ControllerBase
         await _mediator.Send(new DeleteUsuarioCommand { Id = id });
         return NoContent();
     }
+
+    [HttpGet("proveedores")]
+public async Task<IActionResult> GetUsuariosProveedores()
+{
+    var usuariosProveedores = await _mediator.Send(new GetAllUsuariosProveedoresQuery());
+    return Ok(usuariosProveedores);
 }
 
  
 
 
 
-}
+}}

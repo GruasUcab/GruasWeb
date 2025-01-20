@@ -5,6 +5,8 @@ using GrúasUCAB.Infrastructure.Persistence.Usuarios;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq.Expressions;
+
 
 namespace GrúasUCAB.Infrastructure.Handlers.Usuarios{
     public class UsuarioRepository : IUsuarioRepository
@@ -43,10 +45,14 @@ namespace GrúasUCAB.Infrastructure.Handlers.Usuarios{
         _context.Set<Usuario>().Remove(usuario);
         await _context.SaveChangesAsync();
     }
+
+    public async Task<IEnumerable<Usuario>> GetAllAsync(Expression<Func<Usuario, bool>> predicate)
+{
+    return await _context.Usuarios.Where(predicate).ToListAsync();
 }
 
 
-}
+}}
 
 
 

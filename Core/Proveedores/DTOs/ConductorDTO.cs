@@ -23,6 +23,15 @@ public class UpdateConductorDTO
     public Guid ProveedorId { get; set; }
 }
 
+public class UpdateConductorUbicacionDTO
+{
+    public Guid Id { get; set; }   
+    public required string Latitud { get; set; }
+    public required string Longitud { get; set; }
+    
+}
+
+
 public class ConductorDTO
 {
     public Guid Id { get; set; }

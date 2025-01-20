@@ -6282,11 +6282,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\ProyectoUcab\\GruasUcabb\\API\\API.csproj",
+      "projectUniqueName": "C:\\ProyectoUcab\\GruasUcabb\\api\\API.csproj",
       "projectName": "API",
-      "projectPath": "C:\\ProyectoUcab\\GruasUcabb\\API\\API.csproj",
+      "projectPath": "C:\\ProyectoUcab\\GruasUcabb\\api\\API.csproj",
       "packagesPath": "C:\\Users\\Nelson Delgado\\.nuget\\packages\\",
-      "outputPath": "C:\\ProyectoUcab\\GruasUcabb\\API\\obj\\",
+      "outputPath": "C:\\ProyectoUcab\\GruasUcabb\\api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Nelson Delgado\\AppData\\Roaming\\NuGet\\NuGet.Config"

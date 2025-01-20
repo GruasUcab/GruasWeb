@@ -92,7 +92,9 @@ namespace GrúasUCAB.Infrastructure.Persistence.Proveedores
                         .IsRequired();
 
                   entity.Property(c => c.Sub)
-                        .IsRequired();                  
+                        .IsRequired();     
+                  entity.Property(c => c.Latitud);
+                  entity.Property(c => c.Longitud);             
                   
 
 

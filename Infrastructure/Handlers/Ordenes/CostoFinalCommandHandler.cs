@@ -15,12 +15,13 @@ namespace Infrastructure.Handlers.Ordenes
         private readonly IOrdenDeServicioRepository _ordenServicioRepository;
         private readonly IPolizaRepository  _polizaRepository;
         private readonly IVehiculoAseguradoRepository  _vehiculoAseguradoRepository;
-
-        public CostoFinalCommandHandler(IOrdenDeServicioRepository ordenServicioRepository, IPolizaRepository polizaRepository, IVehiculoAseguradoRepository vehiculoAseguradoRepository)
+        private readonly ICostoAdicionalRepository _costoAdicionalRepository;
+        public CostoFinalCommandHandler(IOrdenDeServicioRepository ordenServicioRepository, IPolizaRepository polizaRepository, IVehiculoAseguradoRepository vehiculoAseguradoRepository, ICostoAdicionalRepository costoAdicionalRepository)
         {
             _ordenServicioRepository = ordenServicioRepository;            
             _polizaRepository = polizaRepository;
             _vehiculoAseguradoRepository = vehiculoAseguradoRepository;
+            _costoAdicionalRepository = costoAdicionalRepository;
         }
 
         public async Task<Unit> Handle(CostoFinalCommand request, CancellationToken cancellationToken)
@@ -45,15 +46,20 @@ namespace Infrastructure.Handlers.Ordenes
                 throw new KeyNotFoundException("La poliza no existe.");
             }
 
+            var costosAdicionales = await _costoAdicionalRepository.GetByOrdenIdAsync(request.OrdenId);
+
+            
+
             // Calcular el costo base
             var kilometrosExtras = ordenServicio.KilometrosRecorridos - poliza.KilometrosIncluidos; // Cobertura de 30 km
             var costoPorKilometrosExtras = kilometrosExtras > 0 ? kilometrosExtras * poliza.CostoXKilometro : 0; // $2 por km adicional
 
+            var costoAdicional = costosAdicionales?.Sum(x => x.Monto) ?? 0;
             // Calcular el costo total
-            //var costoTotal = costoPorKilometrosExtras + request.CostosAdicionales;
+            var costoTotal = costoPorKilometrosExtras + costoAdicional;
 
             // Actualizar la orden de servicio
-            //ordenServicio.CostoTotal = costoTotal;
+            ordenServicio.CostoTotal = costoTotal ?? 0;
             ordenServicio.CostoBase = costoPorKilometrosExtras;
             
             await _ordenServicioRepository.SaveChangesAsync();

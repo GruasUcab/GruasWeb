@@ -8,6 +8,8 @@ namespace GrúasUCAB.Core.Proveedores.Entities
     public string Nombre { get; private set; }
     public string Apellido { get; private set; }
     public string Licencia { get; private set; }
+    public string? Latitud {get; private set;}
+    public string? Longitud {get; private set;}
     public string Telefono {get; private set; }
     public bool Activo {get; private set; }
     public Guid ProveedorId { get; private set; }
@@ -39,6 +41,14 @@ namespace GrúasUCAB.Core.Proveedores.Entities
         Apellido = apellido;
         Licencia = licencia;
         ProveedorId = proveedorId;
+    }
+
+    public void UpdateUbicacion(string latitud, string longitud)
+    {
+        Latitud = latitud;
+        Longitud = longitud;
+
+
     }
 }
 

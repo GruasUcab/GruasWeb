@@ -57,6 +57,14 @@ public class ConductorController : ControllerBase
         return NoContent();
     }
 
+    [HttpPut("UpdateUbicacion")]
+    public async Task<IActionResult> UpdateConductorUbicacion(UpdateConductorUbicacionDTO conductorDto)
+    {
+        
+        await _mediator.Send(new UpdateConductorUbicacionCommand(conductorDto));
+        return NoContent();
+    }
+
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteConductor(Guid id)
     {

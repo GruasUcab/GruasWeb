@@ -57,11 +57,11 @@ public class ConductorController : ControllerBase
         return NoContent();
     }
 
-    [HttpPut("UpdateUbicacion")]
-    public async Task<IActionResult> UpdateConductorUbicacion(UpdateConductorUbicacionDTO conductorDto)
+    [HttpPut("UpdateUbicacion{id}")]
+    public async Task<IActionResult> UpdateConductorUbicacion(Guid id, UpdateConductorUbicacionDTO conductorDto)
     {
         
-        await _mediator.Send(new UpdateConductorUbicacionCommand(conductorDto));
+        await _mediator.Send(new UpdateConductorUbicacionCommand(id,conductorDto));
         return NoContent();
     }
 

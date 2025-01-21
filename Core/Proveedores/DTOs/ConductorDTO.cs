@@ -24,8 +24,7 @@ public class UpdateConductorDTO
 }
 
 public class UpdateConductorUbicacionDTO
-{
-    public Guid Id { get; set; }   
+{    
     public required string Latitud { get; set; }
     public required string Longitud { get; set; }
     

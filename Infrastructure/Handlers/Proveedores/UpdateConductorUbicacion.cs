@@ -16,7 +16,8 @@ public class UpdateConductorUbicacionCommandHandler : IRequestHandler<UpdateCond
 
     public async Task<Unit> Handle(UpdateConductorUbicacionCommand request, CancellationToken cancellationToken)
     {
-        var conductor = await _repository.GetByIdAsync(request.ConductorDTO.Id);
+
+        var conductor = await _repository.GetByIdAsync(request.Id);
         if (conductor == null)
         {
             throw new KeyNotFoundException("Conductor not found");

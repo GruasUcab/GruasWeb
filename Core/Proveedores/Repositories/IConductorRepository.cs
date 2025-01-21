@@ -9,5 +9,6 @@ namespace GrúasUCAB.Core.Proveedores.Repositories
     Task AddAsync(Conductor conductor);
     Task UpdateAsync(Conductor conductor);
     Task DeleteAsync(Guid id);
+    Task<Conductor?> GetBySubAsync(string sub);
 }
 }

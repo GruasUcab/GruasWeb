@@ -78,6 +78,18 @@ public class ConductorController : ControllerBase
         var conductores = await _mediator.Send(new GetAllConductoresQuery());
         return Ok(conductores);
     }
+
+    [HttpGet("conductor/id-by-sub/{sub}")]
+public async Task<IActionResult> GetConductorIdBySub(string sub)
+{
+    var conductorId = await _mediator.Send(new GetConductorIdBySubQuery(sub));
+    if (conductorId == null)
+    {
+        return NotFound(new { Message = "Conductor no encontrado" });
+    }
+
+    return Ok(new { ConductorId = conductorId });
+}
 }
 
 }

@@ -111,6 +111,13 @@ public class OrdenDeServicioController : ControllerBase
             return BadRequest(ex.Message);
         }
     }
+
+    [HttpGet("{conductorId:guid}/ordenes")]
+    public async Task<IActionResult> GetOrdenesByConductorId(Guid conductorId)
+    {
+        var ordenes = await _mediator.Send(new GetOrdenesByConductorIdQuery(conductorId));
+        return Ok(ordenes);
+    }
 }
 
 }

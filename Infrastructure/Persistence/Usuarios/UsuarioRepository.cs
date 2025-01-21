@@ -47,9 +47,15 @@ namespace GrúasUCAB.Infrastructure.Handlers.Usuarios{
     }
 
     public async Task<IEnumerable<Usuario>> GetAllAsync(Expression<Func<Usuario, bool>> predicate)
-{
-    return await _context.Usuarios.Where(predicate).ToListAsync();
-}
+    {
+        return await _context.Usuarios.Where(predicate).ToListAsync();
+    }
+
+    public async Task<Usuario?> GetBySubAsync(string sub)
+    {
+        return await _context.Usuarios
+            .FirstOrDefaultAsync(u => u.Sub == sub);
+    }
 
 
 }}

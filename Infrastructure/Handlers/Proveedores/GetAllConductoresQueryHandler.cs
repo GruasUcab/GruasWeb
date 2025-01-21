@@ -25,7 +25,8 @@ public class GetAllConductoresQueryHandler : IRequestHandler<GetAllConductoresQu
             Licencia = c.Licencia,
             ProveedorId = c.ProveedorId,
             Longitud = c.Longitud?? string.Empty,
-            Latitud = c.Latitud?? string.Empty
+            Latitud = c.Latitud?? string.Empty,
+            Sub = c.Sub
         });
     }
 }

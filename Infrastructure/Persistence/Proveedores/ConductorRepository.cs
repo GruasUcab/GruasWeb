@@ -44,5 +44,11 @@ namespace GrúasUCAB.Infrastructure.Persistence.Proveedores
             await _context.SaveChangesAsync();
         }
     }
+    
+    public async Task<Conductor?> GetBySubAsync(string sub)
+    {
+        return await _context.Conductores
+            .FirstOrDefaultAsync(c => c.Sub == sub);
+    }
 }
 }

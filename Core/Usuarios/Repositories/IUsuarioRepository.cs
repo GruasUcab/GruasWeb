@@ -22,6 +22,7 @@ public interface IUsuarioRepository
     Task UpdateAsync(Usuario usuario);
     Task DeleteAsync(Usuario usuario);
     Task<IEnumerable<Usuario>> GetAllAsync(Expression<Func<Usuario, bool>> predicate);
+    Task<Usuario?> GetBySubAsync(string sub);
 }
 
 

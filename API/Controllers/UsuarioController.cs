@@ -81,6 +81,17 @@ public async Task<IActionResult> GetUsuariosProveedores()
     return Ok(usuariosProveedores);
 }
 
+    [HttpGet("usuario/id-by-sub/{sub}")]
+public async Task<IActionResult> GetUsuarioIdBySub(string sub)
+{
+    var usuarioId = await _mediator.Send(new GetUsuarioIdBySubQuery(sub));
+    if (usuarioId == null)
+    {
+        return NotFound(new { Message = "Usuario no encontrado" });
+    }
+
+    return Ok(new { UsuarioId = usuarioId });
+}
  
 
 

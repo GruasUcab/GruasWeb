@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jTnq9Nz2M2w=",
+  "dgSpecHash": "0dY2Rn9AZ2Q=",
   "success": true,
-  "projectFilePath": "C:\\ProyectoUcab\\GruasUcabb\\Infrastructure\\Infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\Nelson Delgado\\Desktop\\Backend\\GruasWeb\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Nelson Delgado\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\Nelson Delgado\\.nuget\\packages\\flurl.http.signed\\2.4.2\\flurl.http.signed.2.4.2.nupkg.sha512",

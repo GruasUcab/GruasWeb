@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\ProyectoUcab\\GruasUcabb\\api\\API.csproj": {}
+    "C:\\Users\\Nelson Delgado\\Desktop\\Backend\\GruasWeb\\api\\API.csproj": {}
   },
   "projects": {
-    "C:\\ProyectoUcab\\GruasUcabb\\api\\API.csproj": {
+    "C:\\Users\\Nelson Delgado\\Desktop\\Backend\\GruasWeb\\api\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ProyectoUcab\\GruasUcabb\\api\\API.csproj",
+        "projectUniqueName": "C:\\Users\\Nelson Delgado\\Desktop\\Backend\\GruasWeb\\api\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\ProyectoUcab\\GruasUcabb\\api\\API.csproj",
+        "projectPath": "C:\\Users\\Nelson Delgado\\Desktop\\Backend\\GruasWeb\\api\\API.csproj",
         "packagesPath": "C:\\Users\\Nelson Delgado\\.nuget\\packages\\",
-        "outputPath": "C:\\ProyectoUcab\\GruasUcabb\\api\\obj\\",
+        "outputPath": "C:\\Users\\Nelson Delgado\\Desktop\\Backend\\GruasWeb\\api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Nelson Delgado\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -26,11 +26,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj": {
-                "projectPath": "C:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj"
+              "C:\\Users\\Nelson Delgado\\Desktop\\Backend\\GruasWeb\\Core\\Core.csproj": {
+                "projectPath": "C:\\Users\\Nelson Delgado\\Desktop\\Backend\\GruasWeb\\Core\\Core.csproj"
               },
-              "C:\\ProyectoUcab\\GruasUcabb\\Infrastructure\\Infrastructure.csproj": {
-                "projectPath": "C:\\ProyectoUcab\\GruasUcabb\\Infrastructure\\Infrastructure.csproj"
+              "C:\\Users\\Nelson Delgado\\Desktop\\Backend\\GruasWeb\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\Nelson Delgado\\Desktop\\Backend\\GruasWeb\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -158,14 +158,14 @@
         }
       }
     },
-    "C:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj": {
+    "C:\\Users\\Nelson Delgado\\Desktop\\Backend\\GruasWeb\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj",
+        "projectUniqueName": "C:\\Users\\Nelson Delgado\\Desktop\\Backend\\GruasWeb\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "C:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj",
+        "projectPath": "C:\\Users\\Nelson Delgado\\Desktop\\Backend\\GruasWeb\\Core\\Core.csproj",
         "packagesPath": "C:\\Users\\Nelson Delgado\\.nuget\\packages\\",
-        "outputPath": "C:\\ProyectoUcab\\GruasUcabb\\Core\\obj\\",
+        "outputPath": "C:\\Users\\Nelson Delgado\\Desktop\\Backend\\GruasWeb\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Nelson Delgado\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -238,14 +238,14 @@
         }
       }
     },
-    "C:\\ProyectoUcab\\GruasUcabb\\Infrastructure\\Infrastructure.csproj": {
+    "C:\\Users\\Nelson Delgado\\Desktop\\Backend\\GruasWeb\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ProyectoUcab\\GruasUcabb\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\Nelson Delgado\\Desktop\\Backend\\GruasWeb\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "C:\\ProyectoUcab\\GruasUcabb\\Infrastructure\\Infrastructure.csproj",
+        "projectPath": "C:\\Users\\Nelson Delgado\\Desktop\\Backend\\GruasWeb\\Infrastructure\\Infrastructure.csproj",
         "packagesPath": "C:\\Users\\Nelson Delgado\\.nuget\\packages\\",
-        "outputPath": "C:\\ProyectoUcab\\GruasUcabb\\Infrastructure\\obj\\",
+        "outputPath": "C:\\Users\\Nelson Delgado\\Desktop\\Backend\\GruasWeb\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Nelson Delgado\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -260,8 +260,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj": {
-                "projectPath": "C:\\ProyectoUcab\\GruasUcabb\\Core\\Core.csproj"
+              "C:\\Users\\Nelson Delgado\\Desktop\\Backend\\GruasWeb\\Core\\Core.csproj": {
+                "projectPath": "C:\\Users\\Nelson Delgado\\Desktop\\Backend\\GruasWeb\\Core\\Core.csproj"
               }
             }
           }

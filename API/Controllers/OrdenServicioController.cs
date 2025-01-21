@@ -70,19 +70,20 @@ public class OrdenDeServicioController : ControllerBase
         return NoContent();
     }
 
-     [HttpPost("asignar")]
-    public async Task<IActionResult> AsignarConductorYProveedor([FromBody] AsignarConductorProveedorDTO dto)
-    {
-        try
+     [HttpPost("Asignar")]
+        public async Task<IActionResult> AsignarOrden([FromBody] AsignarOrdenCommand command)
         {
-            await _estadoOrdenMachine.AsignarConductorYProveedor(dto.OrdenId, dto.ConductorId, dto.ProveedorId, dto.UbicacionConductor);
-            return Ok("Conductor y Proveedor asignados con éxito.");
+            try
+            {
+                await _estadoOrdenMachine.Handle(command, CancellationToken.None);
+                return Ok();
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
-        catch (Exception ex)
-        {
-            return BadRequest(ex.Message);
-        }
-    }
+
 
     [HttpPut("finalizar/{id}")]
     public async Task<IActionResult> FinalizarOrden(Guid id)

@@ -26,6 +26,11 @@ namespace GrúasUCAB.Core.Ordenes.Entities
         public string? LatitudDestino {get; private set;}
         public string? LongitudDestino {get; private set;}
 
+        public string? LatitudConductor { get; private set; }
+    
+        public string? LongitudConductor { get; private set; }
+
+
         public decimal CostoTotal { get;  set; }
         public decimal? CostoBase {get;  set;}
         public Guid AseguradoId {get; private set;}
@@ -36,8 +41,7 @@ namespace GrúasUCAB.Core.Ordenes.Entities
 
         public Guid? ProveedorId { get; private set; }        
 
-        public Guid? VehiculoId { get; private set; }
-        public string? UbicacionConductor {get; private set;}       
+        public Guid? VehiculoId { get; private set; }             
         
         public OrdenDeServicio() {}
 
@@ -89,11 +93,13 @@ namespace GrúasUCAB.Core.Ordenes.Entities
             UbicacionDestino = nuevaUbicacionDestino;
         }
 
-        public void AsignarConductorYProveedor(Guid conductorId, Guid proveedorId, string ubicacionConductor)
+        public void AsignarConductorYProveedor(Guid conductorId, Guid proveedorId, string latitud, string longitud)
     {
         ConductorId = conductorId;
         ProveedorId = proveedorId;
-        UbicacionConductor = ubicacionConductor;
+        LatitudConductor = latitud;
+        LongitudConductor = longitud;
+
     }
     }
 }

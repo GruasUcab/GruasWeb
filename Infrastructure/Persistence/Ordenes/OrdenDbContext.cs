@@ -44,7 +44,9 @@ namespace GrúasUCAB.Infrastructure.Persistence.Ordenes
                       .IsRequired()
                       .HasMaxLength(40);
 
-                  entity.Property(e => e.UbicacionConductor);
+                  entity.Property(e=> e.LatitudConductor);
+
+                  entity.Property(e=> e.LongitudConductor);
 
 
                 entity.Property(e => e.UbicacionDestino)

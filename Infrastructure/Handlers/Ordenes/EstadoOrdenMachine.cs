@@ -1,41 +1,55 @@
 using GrúasUCAB.Core.Ordenes.Entities;
 using GrúasUCAB.Core.Ordenes.Repositories;
+using GrúasUCAB.Core.Proveedores.Repositories;
 
 namespace GrúasUCAB.Core.Ordenes.Commands{
 
     public class EstadoOrdenMachine
 {
     private readonly IOrdenDeServicioRepository _ordenDeServicioRepository;
+    private readonly IConductorRepository _conductorRepository;
 
-    public EstadoOrdenMachine(IOrdenDeServicioRepository ordenDeServicioRepository)
+    public EstadoOrdenMachine(IOrdenDeServicioRepository ordenDeServicioRepository, IConductorRepository conductorRepository)
     {
         _ordenDeServicioRepository = ordenDeServicioRepository;
+        _conductorRepository = conductorRepository;
     }
 
     // Método para manejar el cambio de estado
-    public async Task AsignarConductorYProveedor(Guid ordenId, Guid conductorId, Guid proveedorId, string ubicacionConductor)
+    public async Task Handle(AsignarOrdenCommand request, CancellationToken cancellationToken)
     {
-        // Recuperamos la orden de servicio
-        var orden = await _ordenDeServicioRepository.GetByIdAsync(ordenId);
-
+        // Obtener la orden de servicio
+        var orden = await _ordenDeServicioRepository.GetByIdAsync(request.OrdenId);
         if (orden == null)
         {
             throw new InvalidOperationException("La orden de servicio no existe.");
         }
 
-        // Solo permitimos asignar si está en el estado "Pendiente"
+        // Validar estado de la orden
         if (orden.Estado != EstadoOrden.Pendiente)
         {
-            throw new InvalidOperationException("Solo se puede asignar un conductor y proveedor en estado 'Pendiente'.");
+            throw new InvalidOperationException("Solo se puede asignar un conductor si la orden está en estado 'Pendiente'.");
         }
 
-        // Asignamos el conductor y proveedor
-        orden.AsignarConductorYProveedor(conductorId, proveedorId, ubicacionConductor);
+        // Obtener la información del conductor
+        var conductor = await _conductorRepository.GetByIdAsync(request.ConductorId);
+        if (conductor == null)
+        {
+            throw new InvalidOperationException("El conductor no existe.");
+        }
 
-        // Cambiamos el estado a "Asignada"
+        // Asignar conductor, proveedor y ubicación
+        orden.AsignarConductorYProveedor(
+            request.ConductorId,
+            conductor.ProveedorId,
+            conductor.Latitud?? "",
+            conductor.Longitud?? ""
+        );
+
+        // Cambiar estado a "Asignada"
         orden.CambiarEstado(EstadoOrden.Asignada);
 
-        // Guardamos los cambios en la base de datos
+        // Guardar cambios
         await _ordenDeServicioRepository.UpdateAsync(orden);
     }
 

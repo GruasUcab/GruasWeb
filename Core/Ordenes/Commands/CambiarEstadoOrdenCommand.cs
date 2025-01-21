@@ -1,9 +1,9 @@
 using MediatR;
 using GrúasUCAB.Core.Ordenes.Entities;
 namespace GrúasUCAB.Core.Ordenes.Commands{
-public class CambiarEstadoOrdenCommand : IRequest<bool>
+public class AsignarOrdenCommand : IRequest<Unit>
 {
     public Guid OrdenId { get; set; }
-    public EstadoOrden NuevoEstado { get; set; }
+    public Guid ConductorId { get; set; }
 }
 }

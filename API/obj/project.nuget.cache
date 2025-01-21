@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Mc6k6lJsjAg=",
+  "dgSpecHash": "NY3Mlic1vOA=",
   "success": true,
-  "projectFilePath": "C:\\ProyectoUcab\\GruasUcabb\\api\\API.csproj",
+  "projectFilePath": "C:\\Users\\Nelson Delgado\\Desktop\\Backend\\GruasWeb\\api\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Nelson Delgado\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\Nelson Delgado\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",

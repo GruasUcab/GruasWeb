@@ -1,5 +1,7 @@
+using System.Net;
 using GrúasUCAB.Core.Ordenes.Entities;
 using GrúasUCAB.Core.Ordenes.Repositories;
+using GrúasUCAB.Core.Proveedores.Entities;
 using GrúasUCAB.Core.Proveedores.Repositories;
 
 namespace GrúasUCAB.Core.Ordenes.Commands{
@@ -30,6 +32,7 @@ namespace GrúasUCAB.Core.Ordenes.Commands{
         {
             throw new InvalidOperationException("Solo se puede asignar un conductor si la orden está en estado 'Pendiente'.");
         }
+        
 
         // Obtener la información del conductor
         var conductor = await _conductorRepository.GetByIdAsync(request.ConductorId);
@@ -37,6 +40,14 @@ namespace GrúasUCAB.Core.Ordenes.Commands{
         {
             throw new InvalidOperationException("El conductor no existe.");
         }
+
+        if (conductor.Activo == false)
+        {
+            throw new InvalidOperationException("Este conductor tiene una orden asignada");
+        }
+        
+        
+        
 
         // Asignar conductor, proveedor y ubicación
         orden.AsignarConductorYProveedor(
@@ -46,17 +57,22 @@ namespace GrúasUCAB.Core.Ordenes.Commands{
             conductor.Longitud?? ""
         );
 
+        bool estatus= false;
+        conductor.CambiarEstado(estatus);
+
         // Cambiar estado a "Asignada"
         orden.CambiarEstado(EstadoOrden.Asignada);
 
         // Guardar cambios
         await _ordenDeServicioRepository.UpdateAsync(orden);
+        await _conductorRepository.UpdateAsync(conductor);
     }
 
     // Método para cambiar el estado a "Completada"
     public async Task FinalizarOrden(Guid ordenId)
+
     {
-        var orden = await _ordenDeServicioRepository.GetByIdAsync(ordenId);
+        var orden = await _ordenDeServicioRepository.GetByIdAsync(ordenId);        
 
         if (orden == null)
         {
@@ -67,13 +83,28 @@ namespace GrúasUCAB.Core.Ordenes.Commands{
         if (orden.Estado != EstadoOrden.Asignada)
         {
             throw new InvalidOperationException("Solo se puede finalizar una orden en estado 'Asignada'.");
+        }        
+
+        Guid conductorId = orden.ConductorId?? Guid.Empty;
+        var conductor = await _conductorRepository.GetByIdAsync(conductorId);
+        
+
+        if (conductor == null)
+        {
+            throw new InvalidOperationException("El conductor no existe.");
         }
+
+        bool estatus = true;
+        conductor.CambiarEstado(estatus);
+
 
         // Cambiamos el estado a "Completada"
         orden.CambiarEstado(EstadoOrden.Completada);
 
         // Guardamos los cambios
         await _ordenDeServicioRepository.UpdateAsync(orden);
+        await _conductorRepository.UpdateAsync(conductor);
+        
     }
 
     // Método para cancelar la orden
@@ -86,11 +117,26 @@ namespace GrúasUCAB.Core.Ordenes.Commands{
             throw new InvalidOperationException("La orden de servicio no existe.");
         }
 
+        
+        Guid conductorId = orden.ConductorId?? Guid.Empty;
+        var conductor = await _conductorRepository.GetByIdAsync(conductorId);
+
+
+        
+
+        if (conductor == null)
+        {
+            throw new InvalidOperationException("El conductor no existe.");
+        }
+        bool estatus = true;
+        conductor.CambiarEstado(estatus);
+
         // Cambiamos el estado a "Cancelada"
         orden.CambiarEstado(EstadoOrden.Cancelada);
 
         // Guardamos los cambios
         await _ordenDeServicioRepository.UpdateAsync(orden);
+        await _conductorRepository.UpdateAsync(conductor);
     }
 }
 

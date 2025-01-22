@@ -50,6 +50,10 @@ namespace GrúasUCAB.Core.Proveedores.Entities
 
 
     }
+
+    public void CambiarEstado(bool activo){        
+        Activo = activo;
+    }
 }
 
 }

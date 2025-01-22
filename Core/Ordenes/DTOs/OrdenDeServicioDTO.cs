@@ -44,6 +44,22 @@ public class OrdenDeServicioDTO
     
 }
 
+public class OrdenDeServicioGetDTO
+{
+    public Guid Id { get; set; }
+    public DateTime FechaCreacion { get; set; }
+    public required string Estado { get; set; }
+    public required string UbicacionIncidente { get; set; }
+    public required string UbicacionDestino { get; set; }
+    public decimal? KilometrosRecorridos { get; set; }
+    public decimal? CostoTotal { get; set; }
+    public decimal? CostoBase {get; set;}
+    public Guid? ConductorId { get; set; }
+    public Guid? ProveedorId { get; set; }
+    public Guid? VehiculoId { get; set; }
+    
+}
+
 
 
 }

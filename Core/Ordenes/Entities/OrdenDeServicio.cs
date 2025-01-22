@@ -1,6 +1,7 @@
 using GrúasUCAB.Core.Proveedores.Entities;
 using System;
 using System.Collections.Specialized;
+using System.ComponentModel;
 
 
 
@@ -8,9 +9,13 @@ namespace GrúasUCAB.Core.Ordenes.Entities
 {
     public enum EstadoOrden
     {
+        [Description("Pendiente")]
         Pendiente,
+        [Description("Asignada")]
         Asignada,
+        [Description("Completada")]
         Completada,
+        [Description("Cancelada")]
         Cancelada
     }
     public class OrdenDeServicio

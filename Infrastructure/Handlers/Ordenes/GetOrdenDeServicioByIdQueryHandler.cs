@@ -41,6 +41,7 @@ public class GetOrdenDeServicioByIdQueryHandler : IRequestHandler<GetOrdenDeServ
         {
             throw new KeyNotFoundException($"La orden de servicio con ID {request.Id} no fue encontrada.");
         }
+        
 
         // Mapear los datos de la orden a DTO
         var ordenDto = new OrdenDeServicioDTO

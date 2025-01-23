@@ -1,4 +1,0 @@
-c:\ProyectoUcab\GruasUcabb\Core\Proveedores\bin\Debug\net8.0\Core.deps.json
-c:\ProyectoUcab\GruasUcabb\Core\Proveedores\obj\Debug\net8.0\Core.GeneratedMSBuildEditorConfig.editorconfig
-c:\ProyectoUcab\GruasUcabb\Core\Proveedores\obj\Debug\net8.0\Core.AssemblyInfoInputs.cache
-c:\ProyectoUcab\GruasUcabb\Core\Proveedores\obj\Debug\net8.0\Core.AssemblyInfo.cs

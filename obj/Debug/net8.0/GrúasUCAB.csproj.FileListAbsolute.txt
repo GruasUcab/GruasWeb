@@ -1,8 +1,0 @@
-C:\ProyectoUcab\GruasUcabb\obj\Debug\net8.0\GrúasUcab.csproj.AssemblyReference.cache
-C:\ProyectoUcab\GruasUcabb\obj\Debug\net8.0\GrúasUcab.GeneratedMSBuildEditorConfig.editorconfig
-C:\ProyectoUcab\GruasUcabb\obj\Debug\net8.0\GrúasUcab.AssemblyInfoInputs.cache
-C:\ProyectoUcab\GruasUcabb\obj\Debug\net8.0\GrúasUcab.AssemblyInfo.cs
-C:\ProyectoUcab\GruasUcabb\obj\Debug\net8.0\GrúasUcab.csproj.CoreCompileInputs.cache
-C:\ProyectoUcab\GruasUcabb\obj\Debug\net8.0\GrúasUcab.MvcApplicationPartsAssemblyInfo.cs
-C:\ProyectoUcab\GruasUcabb\obj\Debug\net8.0\GrúasUcab.MvcApplicationPartsAssemblyInfo.cache
-C:\ProyectoUcab\GruasUcabb\obj\Debug\net8.0\GrúasUcab.sourcelink.json
